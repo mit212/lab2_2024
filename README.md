@@ -24,7 +24,7 @@ Spring 2024[^1]
     
 ## 1 Hardware Assembly
 
-Below is an image of the 2-DoF robot arm you will assemble. Completing this section should take less than 30 minutes, so please ask for help if you feel like you are taking longer! We want you to have enough time to complete the remaining sections.
+Below is an image of the 2-DoF robot arm you will assemble. Completing this section should take less than 20 minutes, so please ask for help if you feel like you are taking longer! We want you to have enough time to complete the remaining sections.
 
 <p align=center>
   <img src=./.images/0_full.png width=600>
@@ -80,7 +80,7 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
       <img src=./.images/schematic1.png width=600>
     </p>
 5. Push and hold the `M1A`, `M1B`, `M2A`, `M2B` buttons on the motor driver one at a time to check that the motors can spin in both directions.
-6. Run `motor_drive_test.cpp`. You should see both motors turn in both directions at two different speeds.
+6. Make sure the arm is straight and run `motor_drive_test.cpp`. You should see both motors turn in both directions at two different speeds.
 
 | :white_check_mark: CHECKOFF 1 :white_check_mark:   |
 |:---------------------------------------------------|
