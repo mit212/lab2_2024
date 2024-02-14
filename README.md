@@ -145,7 +145,7 @@ Use joystick to try draw something fun!
 
 | :white_check_mark: CHECKOFF 2 :white_check_mark:   |
 |:---------------------------------------------------|
-| Show your (hopefully better) work of art to a TA or LA! |
+| Show your (hopefully improved) work of art to a TA or LA! |
 
 ## 4 Feedback Form
 
