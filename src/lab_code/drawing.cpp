@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <math.h>
 #include "PID.h"
 #include "EncoderVelocity.h"
 #include "util.h"
@@ -16,14 +17,14 @@ double kd = 0;
 double tau = 0.1; //seconds
 PID motorPID(kp, ki, kd, 0, tau, false);
 
-double setpoint1 = 0; //radians
-double new_setpoint1 = 0;
-double position1 = 0; //radians
-double controlEffort1 = 0; //duty cycle
+JoystickReading joystick_reading;
 
-double setpoint2 = 0; //radians
-double new_setpoint2 = 0;
+JointSpace setpoint;
+JointSpace new_setpoint;
+
+double position1 = 0; //radians
 double position2 = 0; //radians
+double controlEffort1 = 0; //duty cycle
 double controlEffort2 = 0; //duty cycle
 
 MotorDriver motor1(DIR1, PWM1, 0);
@@ -37,15 +38,17 @@ unsigned long previousPidLoopStartTime = 0;
 unsigned long timeBetweenPidLoopsAccumulator = 0;
 int pidLoopIntervalCount = 0;
 
-JoystickReading joystick_reading;
-
 double scaledX = 0;
 double scaledY = 0;
 
 double alpha = 0.001;
 
-JointSpace safetyLimit(JointSpace state) {
-    return state; 
+// Checks if provided JointSpace state is within safety limits
+// Returns true if it is and false otherwise
+bool safetyLimit(JointSpace state) {
+    return abs(state.theta1) <= M_PI/2.0 &&
+           abs(state.theta2) <= M_PI*0.9 &&
+           abs(state.theta1 + state.theta2) <= M_PI/2;
 };
 
 void setup() {
@@ -77,22 +80,25 @@ void loop() {
             // TODO 1: Scale joystick_reading to range [-1, 1]
             scaledX = 0;
             scaledY = 0;
-            new_setpoint1 = PI*scaledX;
-            new_setpoint2 = PI*scaledY;
+
+            new_setpoint = {scaledX, scaledY};
+            new_setpoint = new_setpoint * PI;
         } else {
-            // TODO 2: Change the setpoints to use inverseKinematics() on joystick_reading
-            new_setpoint1 = 0;
-            new_setpoint2 = 0;
+            // TODO 2: Set new_setpoint using inverseKinematics() on joystick_reading
+        }
+
+        // If new setpoint is outside safety limits, use old setpoint so robot does nothing
+        if (!safetyLimit(new_setpoint)) {
+            new_setpoint = setpoint;
         }
 
         // Exponential smoothing filter
-        setpoint1 = alpha*new_setpoint1 + (1 - alpha)*setpoint1;
-        setpoint2 = alpha*new_setpoint2 + (1 - alpha)*setpoint2;
+        setpoint = new_setpoint*alpha + setpoint*(1 - alpha);
 
         position1 = encoder1.getPosition();
         position2 = encoder2.getPosition();
-        controlEffort1 = motorPID.calculateParallel(setpoint1, position1);
-        controlEffort2 = motorPID.calculateParallel(setpoint2, position2);
+        controlEffort1 = motorPID.calculateParallel(setpoint.theta1, position1);
+        controlEffort2 = motorPID.calculateParallel(setpoint.theta2, position2);
 
         motor1.drive(controlEffort1);
         motor2.drive(controlEffort2);
@@ -106,9 +112,9 @@ void loop() {
 
             // Print values to serial monitor
             Serial.printf("MOTOR 1 Setpoint (rad): %.2f, Position (rad): %.2f, Control Effort: %.2f, Avg Time Between PID Loops (us): %.2f\n",
-                          setpoint1, position1, controlEffort1, averageTimeBetweenPidLoops);
+                          setpoint.theta1, position1, controlEffort1, averageTimeBetweenPidLoops);
             Serial.printf("MOTOR 2 Setpoint (rad): %.2f, Position (rad): %.2f, Control Effort: %.2f, Avg Time Between PID Loops (us): %.2f\n",
-                          setpoint2, position2, controlEffort2, averageTimeBetweenPidLoops);
+                          setpoint.theta2, position2, controlEffort2, averageTimeBetweenPidLoops);
 
             // Reset the accumulator and count for the next set of averages
             timeBetweenPidLoopsAccumulator = 0;
