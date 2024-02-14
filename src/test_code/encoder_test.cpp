@@ -6,8 +6,8 @@
 #define PRINT_DELAY 30 // Delay between printing to serial in milliseconds
 
 // Encoder velocity readers
-EncoderVelocity encoder(ENCODER1_A_PIN, ENCODER1_B_PIN, CPR_312_RPM);
-
+EncoderVelocity encoder1(ENCODER1_A_PIN, ENCODER1_B_PIN, CPR_312_RPM);
+EncoderVelocity encoder2(ENCODER1_A_PIN, ENCODER1_B_PIN, CPR_312_RPM);
 
 void setup() {
     Serial.begin();
@@ -15,8 +15,10 @@ void setup() {
 
 //Prints the encoder readings to the serial monitor
 void printEncoderReadings(){
-    Serial.printf("encoder: Vel (rad/s): %.2f, Pos (rad): %.2f\n", 
-    encoder.getVelocity(), encoder.getPosition());
+    Serial.printf("encoder 1: Vel (rad/s): %.2f, Pos (rad): %.2f"    
+                  "encoder 2: Vel (rad/s): %.2f, Pos (rad): %.2f\n", 
+                encoder1.getVelocity(), encoder1.getPosition(), 
+                encoder2.getVelocity(), encoder2.getPosition());
  }
 
 void loop(){
