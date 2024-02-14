@@ -4,6 +4,7 @@
 #include "pinout.h"
 #include "util.h"
 #include "MotorDriver.h"
+#include "kinematics.h"
 
 //PID Parameters
 double kp = 5;
@@ -69,13 +70,15 @@ void loop() {
         previousPidLoopStartTime = currentPidLoopStartTime; // Update previous start time for the next loop
         pidLoopIntervalCount++;
 
-        // Scale X and Y to range [-1, 1)
-        scaledX = (X - 2048)/2048;
-        scaledY = (Y - 2048)/2048;
+        // // Scale X and Y to range [-1, 1)
+        // scaledX = (X - 2048)/2048;
+        // scaledY = (Y - 2048)/2048;
 
-        // FIXME: Change new_setpoint1 and new_setpoint2 below from joint space to Cartesian space using inverse kinematics
-        new_setpoint1 = PI*scaledX;
-        new_setpoint2 = PI*scaledY;
+        // // FIXME: Change new_setpoint1 and new_setpoint2 below from joint space to Cartesian space using inverse kinematics
+        // new_setpoint1 = PI*scaledX;
+        // new_setpoint2 = PI*scaledY;
+
+        // TODO: Change setpoint to use inverseKinematics()
 
         // Exponential smoothing filter
         setpoint1 = alpha*new_setpoint1 + (1 - alpha)*setpoint1;
