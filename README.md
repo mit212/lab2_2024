@@ -3,15 +3,61 @@
 2.12/2.120 Intro to Robotics  
 Spring 2024[^1]
 
-## Table of Contents
-- [Lab 1: 2-DoF Robot](#lab-2-2-dof-robot)
-  - [Table of Contents](#table-of-contents)  
+- [1 Hardware Assembly](#1-hardware-assembly)
+  - [1.1 Nuts and Bolts](#11-nuts-and-bolts)
+  - [1.2 Wiring Motors](#12-wiring-motors)
+- [1.3 Validating the Motor](#13-validating-the-motor)
+- [1.4 Wire Encoder](#14-wire-encoder)
+- [1.5 Validating the Encoder](#15-validating-the-encoder)
+- [2 Connecting Joystick](#2-connecting-joystick)
+  - [2.1 Wiring Joystick](#21-wiring-joystick)
+  - [2.2 Joystick Input](#22-joystick-input)
+- [3 Controlling the Robot via Joystick](#3-controlling-the-robot-via-joystick)
+  - [3.1 Joint Space](#31-joint-space)
+  - [3.2 Alpha-Based Low Pass Filter](#32-alpha-based-low-pass-filter)
+  - [3.3 Draw Something](#33-draw-something)
+  - [3.4 Inverse Kinematics](#34-inverse-kinematics)
+  - [3.5 Cartesian Space](#35-cartesian-space)
+  - [3.6 Draw Something Again](#36-draw-something-again)
+- [4 Feedback Form](#4-feedback-form)
+- [X Optional](#x-optional)
+  - [X.1 PID Tune?](#x1-pid-tune)
+  - [X.2 Set a Path (Circle?)](#x2-set-a-path-circle)
+  - [X.3 Wireless?](#x3-wireless)
     
 ## 1 Hardware Assembly
 
+ADD PICTURE OF FULL ASSEMBLY IN CAD (i asked chris for screenshot, waiting for response)
+
 ### 1.1 Nuts and Bolts
 
-This section should take 30 mins or under. Include pics and such.
+You will assemble a 2-DoF arm. This section should take 30 minutes or less.
+
+Materials:
+
+- [2 arm links (low-side U-channel)](https://www.gobilda.com/1143-series-mini-low-side-u-channel-8-hole-216mm-length/)
+- [3 base mounts (U-channel)](https://www.gobilda.com/1120-series-u-channel-4-hole-120mm-length/)
+- [2 motors (60 RPM)](https://www.gobilda.com/5203-series-yellow-jacket-planetary-gear-motor-99-5-1-ratio-24mm-length-8mm-rex-shaft-60-rpm-3-3-5v-encoder/)
+- [2 hubs](https://www.gobilda.com/1310-series-hyper-hub-8mm-rex-bore/)
+- [socket head bolts (M4)](https://www.gobilda.com/2800-series-zinc-plated-steel-socket-head-screw-m4-x-0-7mm-8mm-length-25-pack/)
+- [hex nuts (M4)](https://www.gobilda.com/2811-series-zinc-plated-steel-hex-nut-m4-x-0-7mm-7mm-hex-25-pack/)
+- purple marker holder
+
+Steps:
+1. Attach the 2 motors on either end of a single arm link.
+  ![](./.images/1_motors.png) 
+
+2. Add the hubs onto each shaft with 2 set screws.
+  ![](./.images/2_hub.png) 
+
+3. Build the base with 3 U-channels.
+  ![](./.images/3_base.png) 
+
+4. Attach the base to one of the hubs.
+  ![](./.images/4_attach.png) 
+
+5. Attach a new arm to the other hub and add the marker holder to the end of that arm.
+  ![](./.images/5_holder.png) 
 
 ### 1.2 Wiring Motors 
 
@@ -33,7 +79,6 @@ Then run some other code to check the encoder reads on serial monitor.
 
 ## 2 Connecting Joystick
 
-
 ### 2.1 Wiring Joystick
 
 ### 2.2 Joystick Input
@@ -47,7 +92,6 @@ modify so that uses struct.
 ### 3.1 Joint Space
 
 Write your own code to control motor 1 and motor 2 using the 2 axis.
-
 
 ### 3.2 Alpha-Based Low Pass Filter
 
