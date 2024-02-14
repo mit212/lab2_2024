@@ -110,7 +110,7 @@ Attach a marker to the end of your 2-DoF arm and try drawing something on your w
 First, **derive the forward kinematic equations for a 2-DoF arm**. In other words, derive equations for `x` and `y` in terms of <code>Θ<sub>1</sub></code> and <code>Θ<sub>2</sub></code>.
 
 <p align="center">
-<img src="./.images/2dofarm.png" alt="drawing" width="300"/>
+<img src="./.images/2dofarm.png" alt="drawing" width="400"/>
 </p>
 
 <details>
