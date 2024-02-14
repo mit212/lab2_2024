@@ -83,9 +83,7 @@ Then run some other code to check the encoder reads on serial monitor.
 
 ### 2.2 Joystick Input
 
-Use this joystick input code we gave. Try it out. Examine to learn the diff sections if you havent yet.
-
-modify so that uses struct.
+To validate that you can read the joystick input, run `joystick_test.cpp` and open your Serial Monitor. You should see joystick readings in the range `[0, 4096)`.
 
 ## 3 Controlling the Robot via Joystick
 
@@ -93,7 +91,7 @@ modify so that uses struct.
 
 Run the file `motor_position_control.cpp` to control motor 1 and motor 2 in joint space. At a high level, this file:
 - reads the joystick
-- scales the joystick reading from `[0, 4095]` to `[-1, 1)`
+- scales the joystick reading from `[0, 4096)` to `[-1, 1)`
 - feeds the joystick reading to a position setpoint
 - smoothes the position setpoint using exponential smoothing
 - drives the motor using a PID controller
@@ -128,7 +126,7 @@ Using the forward kinematic equations you found, **derive the inverse kinematic 
 <summary><i> What is inverse kinematics? </i></summary>
 
 Surprisingly, it's the opposite of forward kinematics!
-Put simply, forward inverse kinematics answers the question, "Given the x,y coordinates of the robot's hand, what are the angles of the robot's joints?" For more, refer to lecture 2!
+Put simply, forward inverse kinematics answers the question, "Given the desired x,y coordinates of the robot's hand, what should the angles of the robot's joints be?" For more, refer to lecture 2!
 
 </details>
 
