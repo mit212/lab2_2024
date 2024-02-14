@@ -8,10 +8,7 @@ void joystickSetup() {
 JoystickReading readJoystick() {
     JoystickReading output;
 
-    // TODO: Use analogRead to get the joystick inputs.
+    // TODO: Use analogRead to get the joystick inputs and update the output struct.
 
     return output;
 };
-
-
-

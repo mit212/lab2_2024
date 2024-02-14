@@ -15,7 +15,7 @@ void setup() {
 
 //Prints the encoder readings to the serial monitor
 void printEncoderReadings(){
-    Serial.printf("encoder 1: Vel (rad/s): %.2f, Pos (rad): %.2f"    
+    Serial.printf("encoder 1: Vel (rad/s): %.2f, Pos (rad): %.2f,   "    
                   "encoder 2: Vel (rad/s): %.2f, Pos (rad): %.2f\n", 
                 encoder1.getVelocity(), encoder1.getPosition(), 
                 encoder2.getVelocity(), encoder2.getPosition());

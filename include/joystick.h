@@ -5,4 +5,4 @@ struct JoystickReading {
 };
 
 void setup_joystick();
-JoystickReading read_joystick();
+JoystickReading readJoystick();
