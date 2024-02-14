@@ -171,4 +171,4 @@ Rewire to make joystick wireless from the rest of the system!
 
 
 
-[^1]: Version 1 - 2024: Jinger Chong
+[^1]: Version 1 - 2024: Jinger Chong, Josh Sohn
