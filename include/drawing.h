@@ -1,0 +1,6 @@
+#include "kinematics.h"
+
+JointSpace safetyLimit(JointSpace state);
+
+void setup();
+void loop();
