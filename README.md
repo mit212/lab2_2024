@@ -51,19 +51,14 @@ Steps:
       <img src=./.images/2_hub.png width=350>
     </p>
 
-3. Build the base using 3 U-channels.
+3. Attach the base made of 3 U-channels to one of the hubs.
     <p align=center>
-      <img src=./.images/3_base.png width=600>
+      <img src=./.images/3_attach.png width=300>
     </p>
 
-4. Attach the base to one of the hubs.
+4. Attach a new arm to the other hub and attach the marker holder to the end of that arm.
     <p align=center>
-      <img src=./.images/4_attach.png width=300>
-    </p>
-
-5. Attach a new arm to the other hub and attach the marker holder to the end of that arm.
-    <p align=center>
-      <img src=./.images/5_holder.png width=600>
+      <img src=./.images/4_holder.png width=600>
     </p>
 
 ## 2 Wiring and Validation 
@@ -107,7 +102,7 @@ Now that we have a validated 2-DoF robot, let's add a joystick to control it.
     <p align=center>
       <img src=./.images/schematic3.png width=900>
     </p>
-2. To validate that you can read the joystick input, run `joystick_test.cpp` and open the Serial Monitor. You should see joystick readings in the range `[0, 4096)`.
+2. To validate that you can read the joystick input, run `joystick_test.cpp` and open the Serial Monitor. You should see joystick readings in the range `[0, 4096).
 
 ## 4 Moving in Joint Space
 

@@ -4,14 +4,15 @@
 # define LINK1 0 
 # define LINK2 0
 
-struct State {
+struct JointSpace {
     double theta1;
     double theta2;
 };
 
-struct Point {
+struct TaskSpace {
     double x;
     double y;
 };
 
-State inverseKinematics(Point endEffector);
+TaskSpace forwardKinematics(JointSpace state);
+JointSpace inverseKinematics(TaskSpace point);
