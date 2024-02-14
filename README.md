@@ -14,11 +14,11 @@ Spring 2024[^1]
   - [2.2 Joystick Input](#22-joystick-input)
 - [3 Controlling the Robot via Joystick](#3-controlling-the-robot-via-joystick)
   - [3.1 Joint Space](#31-joint-space)
-  - [3.2 Alpha-Based Low Pass Filter](#32-alpha-based-low-pass-filter)
-  - [3.3 Draw Something](#33-draw-something)
+  - [3.2 Draw Something](#32-draw-something)
+  - [3.3 Forward Kinematics](#33-forward-kinematics)
   - [3.4 Inverse Kinematics](#34-inverse-kinematics)
   - [3.5 Cartesian Space](#35-cartesian-space)
-  - [3.6 Draw Something Again](#36-draw-something-again)
+  - [3.6 Draw Something Pt.2](#36-draw-something-pt2)
 - [4 Feedback Form](#4-feedback-form)
 - [X Optional](#x-optional)
   - [X.1 PID Tune?](#x1-pid-tune)
@@ -91,35 +91,61 @@ modify so that uses struct.
 
 ### 3.1 Joint Space
 
-Write your own code to control motor 1 and motor 2 using the 2 axis.
+Run the file `motor_position_control.cpp` to control motor 1 and motor 2 in joint space. At a high level, this file:
+- reads the joystick
+- scales the joystick reading from `[0, 4095]` to `[-1, 1)`
+- feeds the joystick reading to a position setpoint
+- smoothes the position setpoint using exponential smoothing
+- drives the motor using a PID controller
 
-### 3.2 Alpha-Based Low Pass Filter
+Simply put, the x-axis of the joystick controls the velocity of motor 1, and the y-axis of the joystick controls the velocity of motor 2. This is joint space!
 
-try it again with filtering, should be smoother
-
-### 3.3 Draw Something
-
-its probably going to be bad
-
-
-CHECKOFF?
-
-### 3.4 Inverse Kinematics
-
-Derive kinematics equations then use that to derive inverse kinematics.
-
-### 3.5 Cartesian Space
-
-Copy the code to new file. Modify so that x y in world coords correspond to joystick 2 axis.
-
-### 3.6 Draw Something Again
-
-Use joystick to draw something fun!
-
+### 3.2 Draw Something
+Attach a marker to the end of your 2-DoF arm and try drawing something on your whiteboard using joint space control.
 
 | :white_check_mark: CHECKOFF 1 :white_check_mark:   |
 |:---------------------------------------------------|
-| Demonstrate  to a TA or LA! |
+| Show your work of art to a TA or LA! |
+
+### 3.3 Forward Kinematics
+
+First, **derive the forward kinematic equations for a 2-DoF arm**. In other words, derive equations for `x` and `y` in terms of <code>Θ<sub>1</sub></code> and <code>Θ<sub>2</sub></code>.
+
+![](./.images/2dofarm.png)
+
+<details>
+<summary><i> What is forward kinematics? </i></summary>
+
+Put simply, forward kinematics answers the question, "Given the angles of the robot's joints, what are the x,y coordinates of the robot's hand?" For more, refer to lecture 2!
+
+</details>
+
+### 3.4 Inverse Kinematics
+
+Using the forward kinematic equations you found, **derive the inverse kinematic equations for a 2-DoF arm**. In other words, derive equations for <code>Θ<sub>1</sub></code> and <code>Θ<sub>2</sub></code> in terms of `x` and `y`.
+
+<details>
+<summary><i> What is inverse kinematics? </i></summary>
+
+Surprisingly, it's the opposite of forward kinematics!
+Put simply, forward inverse kinematics answers the question, "Given the x,y coordinates of the robot's hand, what are the angles of the robot's joints?" For more, refer to lecture 2!
+
+</details>
+
+### 3.5 Cartesian Space
+
+Change new_setpoint1 and new_setpoint2 from joint space to Cartesian space using inverse kinematics.
+
+Hint: MEASURE THE ROBOT WORKSPACE
+
+### 3.6 Draw Something Pt.2
+
+Use joystick to try draw something fun!
+
+
+| :white_check_mark: CHECKOFF 2 :white_check_mark:   |
+|:---------------------------------------------------|
+| Show your (hopefully better) work of art to a TA or LA! |
 
 ## 4 Feedback Form
 
@@ -139,7 +165,7 @@ Make copy of your code and modify so that it will auto follow a set path, like a
 
 Rewire to make joystick wireless from the rest of the system!
 
-| :white_check_mark: OPTIONAL CHECKOFF 2 :white_check_mark:   |
+| :white_check_mark: OPTIONAL CHECKOFF 3 :white_check_mark:   |
 |:---------------------------------------------------|
 | Demonstrate your awesome wireless joystick to a TA or LA! |
 

@@ -12,13 +12,13 @@ double kd = 0;
 double tau = 0.1; //seconds
 PID motorPID(kp, ki, kd, 0, tau, false);
 
-double previous_setpoint1 = 0; //radians
+double setpoint1 = 0; //radians
 double new_setpoint1 = 0;
 double position1 = 0; //radians
 double velocity1 = 0; //radians per second
 double controlEffort1 = 0; //duty cycle
 
-double previous_setpoint2 = 0; //radians
+double setpoint2 = 0; //radians
 double new_setpoint2 = 0;
 double position2 = 0; //radians
 double velocity2 = 0; //radians per second
@@ -69,23 +69,22 @@ void loop() {
         previousPidLoopStartTime = currentPidLoopStartTime; // Update previous start time for the next loop
         pidLoopIntervalCount++;
 
-        // Scale X and Y to range [-1, 1]
+        // Scale X and Y to range [-1, 1)
         scaledX = (X - 2048)/2048;
         scaledY = (Y - 2048)/2048;
 
         // FIXME: Change new_setpoint1 and new_setpoint2 below from joint space to Cartesian space using inverse kinematics
-        new_setpoint1 = scaledX;
-        new_setpoint2 = scaledY;
+        new_setpoint1 = PI*scaledX;
+        new_setpoint2 = PI*scaledY;
 
         // Exponential smoothing filter
-        previous_setpoint1 = alpha*new_setpoint1 + (1 - alpha)*previous_setpoint1;
-        previous_setpoint2 = alpha*new_setpoint2 + (1 - alpha)*previous_setpoint2;
+        setpoint1 = alpha*new_setpoint1 + (1 - alpha)*setpoint1;
+        setpoint2 = alpha*new_setpoint2 + (1 - alpha)*setpoint2;
 
-        // position1 = encoder1.getPosition();
-        velocity1 = encoder1.getVelocity();
-        velocity2 = encoder2.getVelocity();
-        controlEffort1 = motorPID.calculateParallel(previous_setpoint1, velocity1);
-        controlEffort2 = motorPID.calculateParallel(previous_setpoint2, velocity2);
+        position1 = encoder1.getPosition();
+        position2 = encoder2.getPosition();
+        controlEffort1 = motorPID.calculateParallel(setpoint1, position1);
+        controlEffort2 = motorPID.calculateParallel(setpoint2, position2);
 
         motor1.drive(controlEffort1);
         motor2.drive(controlEffort2);
@@ -99,13 +98,10 @@ void loop() {
             
 
             // Print values to serial monitor
-            // Serial.printf("Setpoint (rad): %.2f, Position (rad): %.2f, Control Effort: %.2f, Avg Time Between PID Loops (us): %.2f\n",
-            //               setpoint, position, controlEffort, averageTimeBetweenPidLoops);
-
-            Serial.printf("MOTOR 1 Setpoint (rad/s): %.2f, Velocity (rad): %.2f, Control Effort: %.2f, Avg Time Between PID Loops (us): %.2f\n",
-                          previous_setpoint1, velocity1, controlEffort1, averageTimeBetweenPidLoops);
-            Serial.printf("MOTOR 2 Setpoint (rad/s): %.2f, Velocity (rad): %.2f, Control Effort: %.2f, Avg Time Between PID Loops (us): %.2f\n",
-                          previous_setpoint2, velocity2, controlEffort2, averageTimeBetweenPidLoops);
+            Serial.printf("MOTOR 1 Setpoint (rad): %.2f, Position (rad): %.2f, Control Effort: %.2f, Avg Time Between PID Loops (us): %.2f\n",
+                          setpoint1, position1, controlEffort1, averageTimeBetweenPidLoops);
+            Serial.printf("MOTOR 2 Setpoint (rad): %.2f, Position (rad): %.2f, Control Effort: %.2f, Avg Time Between PID Loops (us): %.2f\n",
+                          setpoint2, position2, controlEffort2, averageTimeBetweenPidLoops);
 
             // Reset the accumulator and count for the next set of averages
             timeBetweenPidLoopsAccumulator = 0;
