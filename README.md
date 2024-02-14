@@ -134,7 +134,7 @@ Put simply, forward inverse kinematics answers the question, "Given the desired 
 
 ### 3.5 Cartesian Space
 
-Change new_setpoint1 and new_setpoint2 from joint space to Cartesian space using inverse kinematics.
+Change `new_setpoint1` and `new_setpoint2` from joint space to Cartesian space using inverse kinematics.
 
 Hint: MEASURE THE ROBOT WORKSPACE
 
