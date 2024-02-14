@@ -131,7 +131,7 @@ With the joystick in place, we can then use code to connect the joystick reading
     
 ### 4.2 Commanding the Robot
 
-Open `lab_code/drawing.cpp` and complete the `TODO`s. At a high level, the code should do the following:
+Open `lab_code/drawing.cpp` and complete all the `TODO 1`s. At a high level, the code should do the following:
    - reads the joystick
    - scales the joystick reading from `[0, 4096)` to `[-1, 1)`
    - feeds the joystick reading to a position setpoint
@@ -178,7 +178,7 @@ Put simply, forward inverse kinematics answers the question, "Given the desired 
 
 </details>
 
-Then, translate your derived equations into code by completing the `TODO`s in `include/kinematics.h` and `kinematics.cpp`.
+Then, translate your derived equations into code by completing the `TODO 2`s in `include/kinematics.h` and `kinematics.cpp`.
 
 **CONSIDER WRITING TESTS?**
 
