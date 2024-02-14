@@ -58,7 +58,7 @@ void setup() {
     Serial.begin(); 
     previousPidLoopStartTime = micros(); // Record start time of first PID loop
 
-    setup_joystick();
+    setupJoystick();
 }
 
 void loop() {
@@ -77,7 +77,7 @@ void loop() {
         // joystick_reading = 
 
         if (JOINT_SPACE) {
-            // TODO 1: Scale joystick_reading to range [-1, 1]
+            // TODO 1: Scale joystick_reading from range [0, 4096) to range [-1, 1)
             scaledX = 0;
             scaledY = 0;
 

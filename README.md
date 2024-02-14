@@ -127,7 +127,7 @@ With the joystick in place, we can then use code to connect the joystick reading
     ```
     </details>
 
-2. Open `lab_code/joystick.cpp` and complete the `TODO`s. Refer to `test_code/joystick_test.cpp` to see how to use `INPUT` and `analogRead`. 
+2. Open `lab_code/joystick.cpp` and complete the `TODO`s. Refer to `test_code/joystick_test.cpp` to see how to use `INPUT` and `analogRead`.
     
 ### 4.2 Commanding the Robot
 
@@ -141,7 +141,7 @@ Open `lab_code/drawing.cpp` and complete all the `TODO 1`s. At a high level, the
 Simply put, the x-axis of the joystick controls the velocity of motor 1 and the y-axis of the joystick controls the velocity of motor 2. This is joint space!
 
 ### 4.3 Draw Something
-Attach a marker to the end of your 2-DoF robot and try drawing something on your whiteboard.
+Attach a marker to the end of your 2-DoF robot and try drawing something on your whiteboard. Make sure to move all 3 files `drawing.cpp`, `joystick.cpp`, and `kinematics.cpp` from `lab_code/` to `robot/`.
 
 | :white_check_mark: CHECKOFF 2 :white_check_mark:   |
 |:---------------------------------------------------|

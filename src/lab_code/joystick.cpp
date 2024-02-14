@@ -1,7 +1,7 @@
 #include "joystick.h"
 #include <Arduino.h>
 
-void joystickSetup() {
+void setupJoystick() {
     // TODO: Declare the joystick pins as INPUT. This should only take two lines.
 };
 
