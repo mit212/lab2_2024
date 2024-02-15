@@ -92,7 +92,7 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
 ### 2.2 Motors 
 
 1. Wire the motors according to `include/pinout.h`. Connect the `GND` pin of the motor driver to the `-` rail. 
-2. Use the button as an emergency stop to go between the motor driver and the power supply. Reduce the power supply output to about `5V`. **Remember, the motors are powerful. Always keep the workspace clear of obstacles (laptops) and hold on to the emergency stop button.**
+2. Use the button as an emergency stop to go between the motor driver and the power supply. Reduce the power supply output to about `4V`. **Remember, the motors are powerful. Always keep the workspace clear of obstacles (laptops) and hold on to the emergency stop button.**
 3. Push and hold the `M1A`, `M1B`, `M2A`, `M2B` buttons on the motor driver one at a time to check that the motors can spin in both directions. `M1` should correspond to the motor attached to the base.
 4.  Make sure the arm points straight up in full extension. This is the default position the arm should be in before running any code. 
 5.  Run `motor_drive_test.cpp`. You should see both motors turn in both directions at two different speeds. If nothing is happening, try pressing the emergency stop button.
