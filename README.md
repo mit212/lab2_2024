@@ -9,7 +9,7 @@ Spring 2024[^1]
 - [4 Moving in Joint Space](#4-moving-in-joint-space)
   - [4.1 Refactoring Code](#41-refactoring-code)
   - [4.2 Commanding the Robot](#42-commanding-the-robot)
-  - [4.3 Draw Something](#43-draw-something)
+  - [4.3 Draw A Line](#43-draw-a-line)
 - [5 Moving in Cartesian Space](#5-moving-in-cartesian-space)
   - [5.1 Forward Kinematics](#51-forward-kinematics)
   - [5.2 Inverse Kinematics](#52-inverse-kinematics)
@@ -86,13 +86,9 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
 |:---------------------------------------------------|
 | Demonstrate `motor_drive_test.cpp` to a TA or LA! |
 
-8. Wire the encoders according to the schematic below.
-   <p align=center>
-      <img src=./.images/schematic2.png width=800>
-    </p>
-9. Run `encoder_basic_test.cpp` and open the Serial Monitor. The count should increase when turning counter-clockwise and decrease when turning clockwise. If not, take note of which encoder should have its A and B pins swapped.
-10. Run `encoder_test.cpp`. Confirm that the position and velocity values are reasonable.
-
+1. Wire the encoders according to `include/pinout.h`.
+2. Run `encoder_basic_test.cpp` and open the Serial Monitor. The count should increase when turning counter-clockwise and decrease when turning clockwise. If not, take note of which encoder should have its A and B pins swapped.
+3.  Run `encoder_test.cpp`. Confirm that the position and velocity values are reasonable.
 
 ## 3 Adding the Joystick
 
@@ -146,8 +142,8 @@ Simply put, the x-axis of the joystick controls the velocity of motor 1 and the 
 **partner should hold on to power supply plug to kill if things go wrong**
 - check encoder pins
 
-### 4.3 Draw Something
-Attach a marker to the end of your 2-DoF robot and try drawing something on your whiteboard. Make sure to move all 3 files `drawing.cpp`, `joystick.cpp`, and `kinematics.cpp` from `lab_code/` to `robot/`.
+### 4.3 Draw A Line
+Attach a marker to the end of your 2-DoF robot and try drawing a straight line on your whiteboard. Make sure to move all 3 files `drawing.cpp`, `joystick.cpp`, and `kinematics.cpp` from `lab_code/` to `robot/`.
 
 | :white_check_mark: CHECKOFF 2 :white_check_mark:   |
 |:---------------------------------------------------|
@@ -194,7 +190,7 @@ Change `new_setpoint1` and `new_setpoint2` in `drawing.cpp` from joint space to 
 
 ### 5.4 Draw Something Pt.2
 
-Finally, use the joystick to draw something fun!
+Finally, use the joystick to draw a straight line.
 
 | :white_check_mark: CHECKOFF 3 :white_check_mark:   |
 |:---------------------------------------------------|
