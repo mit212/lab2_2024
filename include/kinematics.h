@@ -3,9 +3,8 @@
 
 #include <math.h>
 
-// TODO 1: Change the values below to reflect the actual lengths of the links.
 # define LINK1 0.169 // m
-# define LINK2 0.169 // m
+# define LINK2 0.209 // m
 
 struct JointSpace {
     double theta1; // radians

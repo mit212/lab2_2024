@@ -6,8 +6,8 @@
 #define PRINT_DELAY 30 // Delay between printing to serial in milliseconds
 
 // Encoder velocity readers
-EncoderVelocity encoder1(ENCODER1_A_PIN, ENCODER1_B_PIN, CPR_312_RPM);
-EncoderVelocity encoder2(ENCODER2_A_PIN, ENCODER2_B_PIN, CPR_312_RPM);
+EncoderVelocity encoder1(ENCODER1_A_PIN, ENCODER1_B_PIN, CPR_60_RPM);
+EncoderVelocity encoder2(ENCODER2_A_PIN, ENCODER2_B_PIN, CPR_60_RPM);
 
 void setup() {
     Serial.begin();

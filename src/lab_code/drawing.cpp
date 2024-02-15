@@ -11,12 +11,8 @@
 bool JOINT_SPACE = true;
 
 //PID Parameters
-double kp = 5;
-double ki = 0;
-double kd = 0;
-double tau = 0.1; //seconds
-PID motorPID1(kp, ki, kd, 0, tau, false);
-PID motorPID2(kp, ki, kd, 0, tau, false);
+PID motorPID1(8.0, 0.0, 0.75, tau, 0.1, false);
+PID motorPID2(3.0, 0.0, 0.5, tau, 0.1, false);
 
 JoystickReading joystick_reading;
 
@@ -30,8 +26,8 @@ double controlEffort2 = 0; //duty cycle
 
 MotorDriver motor1(DIR1, PWM1, 0);
 MotorDriver motor2(DIR2, PWM2, 0);
-EncoderVelocity encoder1(ENCODER1_A_PIN, ENCODER1_B_PIN, CPR_312_RPM, 0.2);
-EncoderVelocity encoder2(ENCODER2_A_PIN, ENCODER2_B_PIN, CPR_312_RPM, 0.2);
+EncoderVelocity encoder1(ENCODER1_A_PIN, ENCODER1_B_PIN, CPR_60_RPM, 0.2);
+EncoderVelocity encoder2(ENCODER2_A_PIN, ENCODER2_B_PIN, CPR_60_RPM, 0.2);
 
 //variables for calculating the average time between PID loops
 unsigned long currentPidLoopStartTime = 0;
@@ -39,14 +35,14 @@ unsigned long previousPidLoopStartTime = 0;
 unsigned long timeBetweenPidLoopsAccumulator = 0;
 int pidLoopIntervalCount = 0;
 
-double alpha = 0.001;
+double alpha = 0.005;
 
 // Checks if provided JointSpace state is within safety limits
 // Returns true if it is and false otherwise
 bool safetyLimit(JointSpace state) {
     return abs(state.theta1) <= M_PI/2.0 &&
            abs(state.theta2) <= M_PI*0.9 &&
-           abs(state.theta1 + state.theta2) <= M_PI/2;
+        //    abs(state.theta1 + state.theta2) <= M_PI/2;
 };
 
 void setup() {

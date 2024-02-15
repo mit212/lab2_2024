@@ -1,4 +1,5 @@
 #include "kinematics.h"
+#include <math.h>
 
 TaskSpace forwardKinematics(JointSpace state) {
     // Initializes a TaskSpace variable called point
@@ -20,7 +21,7 @@ JointSpace inverseKinematics(TaskSpace point) {
 
     // TODO 2: Modify the two lines below to use the inverse kinematics equations you derived. 
     // You may need the variables: LINK1, LINK2, point
-    // as well as the functions: double acos(double x), double asin(double x), double atan(double x).
+    // as well as the functions: double acos(double x), double asin(double x), double atan(double y, double x), double pow(double x, 2).
     // These functions take in a double and return a double representing the angle in radians.
     // state.theta1 and state.theta2 should be in the range [-pi/2, pi/2] and in radians.
     state.theta1 = 0;
