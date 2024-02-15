@@ -18,7 +18,7 @@ Spring 2024[^1]
   - [6.1 Forward Kinematics](#61-forward-kinematics)
   - [6.2 Inverse Kinematics](#62-inverse-kinematics)
   - [6.3 Commanding the Robot](#63-commanding-the-robot)
-  - [6.4 Draw Something Pt.2](#64-draw-something-pt2)
+  - [6.4 Draw Something](#64-draw-something)
 - [X Optional](#x-optional)
   - [X.1 PID Tuning](#x1-pid-tuning)
   - [X.2 Setpoint Path](#x2-setpoint-path)
@@ -84,7 +84,7 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
 ### 2.2 Motors 
 
 1. Wire the motors according to `include/pinout.h`. Connect the `GND` pin of the motor driver to the `-` rail. 
-2. Use the button as an emergency stop to go between the motor driver and the power supply. Reduce the power supply output to about `6V`. **Remember, the motors are powerful. Always keep the workspace clear of obstacles (laptops) and hold on to the emergency stop button.**
+2. Use the button as an emergency stop to go between the motor driver and the power supply. Reduce the power supply output to about `5V`. **Remember, the motors are powerful. Always keep the workspace clear of obstacles (laptops) and hold on to the emergency stop button.**
 3. Push and hold the `M1A`, `M1B`, `M2A`, `M2B` buttons on the motor driver one at a time to check that the motors can spin in both directions. `M1` should correspond to the motor attached to the base.
 4.  Make sure the arm points straight up in full extension. This is the default position the arm should be in before running any code. 
 5.  Run `motor_drive_test.cpp`. You should see both motors turn in both directions at two different speeds. If nothing is happening, try pressing the emergency stop button.
@@ -209,11 +209,11 @@ To validate your derived equations, move `kinematics.cpp` and either `forward_ki
 
 Open `lab_code/drawing.cpp` and complete all the `TODO 2`s. This involves changing `new_setpoint1` and `new_setpoint2` in `drawing.cpp` from joint space to Cartesian space using `State inverseKinematics(Point endEffector)`.
 
-### 6.4 Draw Something Pt.2
+### 6.4 Draw Something 
 
-Finally, use the joystick to draw a straight line.
+Finally, use the joystick to draw your masterpiece.
 
-| :white_check_mark: CHECKOFF 3 :white_check_mark:   |
+| :white_check_mark: CHECKOFF 4 :white_check_mark:   |
 |:---------------------------------------------------|
 | Show your (hopefully improved) work of art to a TA or LA! |
 
