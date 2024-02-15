@@ -15,7 +15,7 @@ void setup(){
 	ESP32Encoder::useInternalWeakPullResistors=UP;
 
 	encoder1.attachFullQuad(ENCODER1_A_PIN, ENCODER1_B_PIN);
-	encoder2.attachFullQuad(ENCODER2_A_PIN, ENCODER2_B_PIN);
+	encoder2.attachFullQuad(ENCODER2_B_PIN, ENCODER2_A_PIN);
 }
 
 void loop(){

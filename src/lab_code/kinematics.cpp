@@ -21,10 +21,11 @@ JointSpace inverseKinematics(TaskSpace point) {
     // TODO 2: Modify the two lines below to use the inverse kinematics equations you derived. 
     // You may need the variables: LINK1, LINK2, point
     // as well as the functions: double atan2(double x, double y), double pow(double x, 2), double sqrt(double x)
+    // If there are two possible configurations, you may choose either.
     state.theta1 = 0;
     state.theta2 = 0;
 
-    // Changes state.theta1 and state.theta2 to in the range [-pi/2, pi/2] and in radians
+    // Makes sure state.theta1 and state.theta2 in the range [-pi/2, pi/2] 
     state.theta1 = atan2(sin(state.theta1), cos(state.theta1));
     state.theta2 = atan2(sin(state.theta2), cos(state.theta2));
 

@@ -93,8 +93,8 @@ void loop() {
         previousPidLoopStartTime = currentPidLoopStartTime; // Update previous start time for the next loop
         pidLoopIntervalCount++;
 
-        position1 = encoder1.getPosition();
-        position2 = encoder2.getPosition();
+        position1 = encoder1.getPosition() + THETA1_OFFSET;
+        position2 = -encoder2.getPosition();
         controlEffort1 = motorPID1.calculateParallel(setpoint.theta1, position1);
         controlEffort2 = motorPID2.calculateParallel(setpoint.theta2, position2);
 

@@ -74,15 +74,11 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
     Rails on a breadboard refer to the two long strips labeled `+` and `-` on either side. They are typically located between red and blue lines parallel to the rails.
     </details>
 3. Open the VSCode application and clone this repository.
-4. Open `include/pinout.h` and note down the motor and encoder pin numbers.
-5. Wire the motors according to the schematic below.
-    <p align=center>
-      <img src=./.images/schematic1.png width=600>
-    </p>
+4. Wire the motors according to `include/pinout.h`.
 5. Push and hold the `M1A`, `M1B`, `M2A`, `M2B` buttons on the motor driver one at a time to check that the motors can spin in both directions. `M1` should correspond to the motor attached to the base.
 6. Make sure the arm is straight and run `motor_drive_test.cpp`. You should see both motors turn in both directions at two different speeds.
 7. Wire the encoders according to `include/pinout.h`.
-8. Run `encoder_basic_test.cpp` and open the Serial Monitor. The count should increase when turning counter-clockwise and decrease when turning clockwise. If not, take note of which encoder should have its A and B pins swapped.
+8. Run `encoder_basic_test.cpp` and open the Serial Monitor. The count should increase when turning counter-clockwise looking and decrease when turning clockwise. 
 9.  Run `encoder_test.cpp`. Confirm that the position and velocity values are reasonable.
 
 | :white_check_mark: CHECKOFF 1 :white_check_mark:   |
@@ -94,10 +90,7 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
 
 Now that we have a validated 2-DoF robot, let's add a joystick to control it.
 
-1. Wire the joystick according to the schematic below.
-    <p align=center>
-      <img src=./.images/schematic3.png width=900>
-    </p>
+1. Wire the joystick according to the schematic on the board.
 2. To validate that you can read the joystick input, run `joystick_test.cpp` and open the Serial Monitor. You should see joystick readings in the range `[0, 4096)`.
 
 ## 4 Moving in Joint Space
@@ -161,6 +154,10 @@ First, derive the forward kinematic equations for a 2-DoF arm. In other words, d
 <img src="./.images/2dofarm.png" alt="drawing" width="300"/>
 </p>
 
+| :white_check_mark: CHECKOFF 3 :white_check_mark:   |
+|:---------------------------------------------------|
+| Show your work of art to a TA or LA! |
+
 <details>
 <summary><i> What is forward kinematics? </i></summary>
 
@@ -181,8 +178,6 @@ Put simply, forward inverse kinematics answers the question, "Given the desired 
 </details>
 
 Then, translate your derived equations into code by completing the `TODO 2`s in `kinematics.cpp`.
-
-**CONSIDER WRITING TESTS?**
 
 ### 5.3 Commanding the Robot
 
