@@ -37,7 +37,7 @@ Materials:
 - 2 [hubs](https://www.gobilda.com/1310-series-hyper-hub-8mm-rex-bore/)
 - [socket head bolts (M4)](https://www.gobilda.com/2800-series-zinc-plated-steel-socket-head-screw-m4-x-0-7mm-8mm-length-25-pack/)
 - [hex nuts (M4)](https://www.gobilda.com/2811-series-zinc-plated-steel-hex-nut-m4-x-0-7mm-7mm-hex-25-pack/)
-- purple marker holder
+- marker holder
 
 Steps:
 1. Attach the 2 motors on either end of a single arm link.
