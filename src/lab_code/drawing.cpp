@@ -30,11 +30,6 @@ MotorDriver motor2(DIR2, PWM2, 0);
 EncoderVelocity encoder1(ENCODER1_A_PIN, ENCODER1_B_PIN, CPR_60_RPM, 0.2);
 EncoderVelocity encoder2(ENCODER2_A_PIN, ENCODER2_B_PIN, CPR_60_RPM, 0.2);
 
-//variables for calculating the average time between PID loops
-unsigned long currentPidLoopStartTime = 0;
-unsigned long previousPidLoopStartTime = 0;
-unsigned long timeBetweenPidLoopsAccumulator = 0;
-int pidLoopIntervalCount = 0;
 
 double alpha = 0.005;
 
@@ -43,7 +38,6 @@ double alpha = 0.005;
 bool safetyLimit(JointSpace state) {
     return abs(state.theta1) <= M_PI/2.0 &&
            abs(state.theta2) <= M_PI*0.9;
-        //    abs(state.theta1 + state.theta2) <= M_PI/2;
 };
 
 void setup() {
@@ -51,12 +45,11 @@ void setup() {
     motor2.setup();
 
     Serial.begin(); 
-    previousPidLoopStartTime = micros(); // Record start time of first PID loop
-
     setupJoystick();
 }
 
 void loop() {
+    // Update setpoint at 1kHz
     EVERY_N_MICROS(1000) {
         // TODO 1: Use the function you implemented in joystick.cpp to read inputs from the joystick 
         // joystick_reading = 
@@ -84,14 +77,6 @@ void loop() {
 
     // Update PID at 10kHz
     EVERY_N_MICROS(100) {        
-        currentPidLoopStartTime = micros(); // Record start time of current PID loop
-
-        // Calculate the time between the start of the current and the previous PID loop
-        if (pidLoopIntervalCount > 0) { // Skip the first loop to have a previous time to compare
-            timeBetweenPidLoopsAccumulator += currentPidLoopStartTime - previousPidLoopStartTime;
-        }
-        previousPidLoopStartTime = currentPidLoopStartTime; // Update previous start time for the next loop
-        pidLoopIntervalCount++;
 
         position1 = encoder1.getPosition() + THETA1_OFFSET;
         position2 = -encoder2.getPosition();
@@ -104,19 +89,12 @@ void loop() {
 
     // Print values at 10Hz
     EVERY_N_MILLIS(100) {
-        if (pidLoopIntervalCount > 1) { // Ensure there's at least one interval to calculate
-            // Calculate the average time between PID loop starts
-            double averageTimeBetweenPidLoops = (double)timeBetweenPidLoopsAccumulator / (pidLoopIntervalCount - 1);
 
             // Print values to serial monitor
-            Serial.printf("MOTOR 1 Setpoint (rad): %.2f, Position (rad): %.2f, Control Effort: %.2f, Avg Time Between PID Loops (us): %.2f\n",
-                          setpoint.theta1, position1, controlEffort1, averageTimeBetweenPidLoops);
-            Serial.printf("MOTOR 2 Setpoint (rad): %.2f, Position (rad): %.2f, Control Effort: %.2f, Avg Time Between PID Loops (us): %.2f\n",
-                          setpoint.theta2, position2, controlEffort2, averageTimeBetweenPidLoops);
+            Serial.printf("MOTOR 1 Setpoint (rad): %.2f, Position (rad): %.2f, Control Effort: %.2f\n",
+                          setpoint.theta1, position1, controlEffort1);
+            Serial.printf("MOTOR 2 Setpoint (rad): %.2f, Position (rad): %.2f, Control Effort: %.2f\n",
+                          setpoint.theta2, position2, controlEffort2);
 
-            // Reset the accumulator and count for the next set of averages
-            timeBetweenPidLoopsAccumulator = 0;
-            pidLoopIntervalCount = 1; // Reset to 1 to skip the first loop's interval calculation
-        }
     }
 }
