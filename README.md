@@ -23,7 +23,7 @@ Spring 2024[^1]
     
 ## 1 Hardware Assembly
 
-Below is an image of the 2-DoF robot arm you will assemble. Completing this section should take less than 15 minutes, so please ask for help if you feel like you are taking longer! We want you to have enough time to complete the remaining sections.
+Below is an image of the 2-DoF robot arm you will assemble. Completing this section should take less than 20 minutes, so please ask for help if you feel like you are taking longer! We want you to have enough time to complete the remaining sections.
 
 <p align=center>
   <img src=./.images/0_full.png width=600>
@@ -79,8 +79,8 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
     <p align=center>
       <img src=./.images/schematic1.png width=600>
     </p>
-6. Push and hold the `M1A`, `M1B`, `M2A`, `M2B` buttons on the motor driver one at a time to check that the motors can spin in both directions.
-7. Run `motor_drive_test.cpp`. You should see both motors turn in both directions at two different speeds.
+5. Push and hold the `M1A`, `M1B`, `M2A`, `M2B` buttons on the motor driver one at a time to check that the motors can spin in both directions.
+6. Make sure the arm is straight and run `motor_drive_test.cpp`. You should see both motors turn in both directions at two different speeds.
 
 | :white_check_mark: CHECKOFF 1 :white_check_mark:   |
 |:---------------------------------------------------|
@@ -102,7 +102,7 @@ Now that we have a validated 2-DoF robot, let's add a joystick to control it.
     <p align=center>
       <img src=./.images/schematic3.png width=900>
     </p>
-2. To validate that you can read the joystick input, run `joystick_test.cpp` and open the Serial Monitor. You should see joystick readings in the range `[0, 4096).
+2. To validate that you can read the joystick input, run `joystick_test.cpp` and open the Serial Monitor. You should see joystick readings in the range `[0, 4096)`.
 
 ## 4 Moving in Joint Space
 
@@ -110,7 +110,7 @@ With the joystick in place, we can then use code to connect the joystick reading
 
 ### 4.1 Refactoring Code
 
-1. Open `include/joystick.h` and define a `struct` to store the `x` and `y` values of a joystick reading.
+1. Open `include/joystick.h` and define a `struct` to store the `x` and `y` values of a joystick reading as integers.
     <details>
     <summary>  <i> What is a struct?</i></summary>
 
@@ -127,12 +127,11 @@ With the joystick in place, we can then use code to connect the joystick reading
     ```
     </details>
 
-2. Open `joystick_test.cpp` and modify the code so that `X` and `Y` are stored in your newly-defined `struct` instead of two separate `int`s. 
-3. Run `joystick_test.cpp` and open the Serial Monitor. Confirm that your joystick readings are the same as before.
+2. Open `lab_code/joystick.cpp` and complete the `TODO`s. Refer to `test_code/joystick_test.cpp` to see how to use `INPUT` and `analogRead`.
     
 ### 4.2 Commanding the Robot
 
-Open `motor_position_control.cpp` and complete the `TODO`s. At a high level, the code should do the following:
+Open `lab_code/drawing.cpp` and complete all the `TODO 1`s. At a high level, the code should do the following:
    - reads the joystick
    - scales the joystick reading from `[0, 4096)` to `[-1, 1)`
    - feeds the joystick reading to a position setpoint
@@ -142,7 +141,7 @@ Open `motor_position_control.cpp` and complete the `TODO`s. At a high level, the
 Simply put, the x-axis of the joystick controls the velocity of motor 1 and the y-axis of the joystick controls the velocity of motor 2. This is joint space!
 
 ### 4.3 Draw Something
-Attach a marker to the end of your 2-DoF robot and try drawing something on your whiteboard.
+Attach a marker to the end of your 2-DoF robot and try drawing something on your whiteboard. Make sure to move all 3 files `drawing.cpp`, `joystick.cpp`, and `kinematics.cpp` from `lab_code/` to `robot/`.
 
 | :white_check_mark: CHECKOFF 2 :white_check_mark:   |
 |:---------------------------------------------------|
@@ -179,7 +178,7 @@ Put simply, forward inverse kinematics answers the question, "Given the desired 
 
 </details>
 
-Then, translate your derived equations into code by completing the `TODO`s in `include/kinematics.h` and `kinematics.cpp`.
+Then, translate your derived equations into code by completing the `TODO 2`s in `include/kinematics.h` and `kinematics.cpp`.
 
 **CONSIDER WRITING TESTS?**
 

@@ -4,5 +4,5 @@ struct JoystickReading {
     // TODO: Define your struct here.
 };
 
-void setup_joystick();
-JoystickReading read_joystick();
+void setupJoystick();
+JoystickReading readJoystick();

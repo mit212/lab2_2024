@@ -18,49 +18,52 @@ void setup() {
     motor2.setup();
 }
 
-void test_motor(MotorDriver motor) {
+void loop() {
     // Move the motor forward at full speed
     Serial.println("Moving Forward at full speed");
-    motor.drive(1.0); // 100% duty cycle
+    motor1.drive(0.3); // 30% duty cycle
+    motor2.drive(0.3); // 30% duty cycle
     delay(DELAY);
 
     // Stop the motor
     Serial.println("Stopping");
-    motor.drive(0.0); // 0% duty cycle
+    motor1.drive(0.0); // 0% duty cycle
+    motor2.drive(0.0); // 0% duty cycle
     delay(DELAY);
 
     // Move the motor forward at half speed
     Serial.println("Moving Forward at half speed");
-    motor.drive(0.5); // 50% duty cycle
+    motor1.drive(0.15); // 15% duty cycle
+    motor2.drive(0.15); // 15% duty cycle
     delay(DELAY);
 
     // Stop the motor
     Serial.println("Stopping");
-    motor.drive(0.0); // 0% duty cycle
+    motor1.drive(0.0); // 0% duty cycle
+    motor2.drive(0.0); // 0% duty cycle
     delay(DELAY);
 
     // Move the motor backward at full speed
     Serial.println("Moving Backward at full speed");
-    motor.drive(-1.0); // -100% duty cycle (backward)
+    motor1.drive(-0.3); // -30% duty cycle (backward)
+    motor2.drive(-0.3); // -30% duty cycle (backward)
     delay(DELAY);
 
     // Stop the motor
     Serial.println("Stopping");
-    motor.drive(0.0); // 0% duty cycle
+    motor1.drive(0.0); // 0% duty cycle
+    motor2.drive(0.0); // 0% duty cycle
     delay(DELAY);
 
     // Move the motor backward at half speed
     Serial.println("Moving Backward at half speed");
-    motor.drive(-0.5); // -50% duty cycle (backward)
+    motor1.drive(-0.15); // -15% duty cycle (backward)
+    motor2.drive(-0.15); // -15% duty cycle (backward)
     delay(DELAY);
 
     // Stop the motor
     Serial.println("Stopping");
-    motor.drive(0.0); // 0% duty cycle
+    motor1.drive(0.0); // 0% duty cycle
+    motor2.drive(0.0); // 0% duty cycle
     delay(DELAY);
-}
-
-void loop() {
-    test_motor(motor1);
-    test_motor(motor2);
 }

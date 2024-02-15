@@ -1,17 +1,14 @@
 #include "joystick.h"
 #include <Arduino.h>
 
-void setup_joystick() {
+void setupJoystick() {
     // TODO: Declare the joystick pins as INPUT. This should only take two lines.
 };
 
-JoystickReading read_joystick() {
+JoystickReading readJoystick() {
     JoystickReading output;
 
-    // TODO: Use analogRead to get the joystick inputs.
+    // TODO: Use analogRead to get the joystick inputs and update the output struct.
 
     return output;
 };
-
-
-
