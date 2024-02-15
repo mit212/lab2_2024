@@ -125,15 +125,14 @@ With the joystick in place, we can then use code to connect the joystick reading
 
 Open `lab_code/drawing.cpp` and complete all the `TODO 1`s. At a high level, the code should do the following:
    - reads the joystick
-   - scales the joystick reading from `[0, 4096)` to `[-1, 1)`
+   - scales the joystick reading from `[-1, 1)` to `[-pi/2, pi/2)`
    - feeds the joystick reading to a position setpoint
    - smoothes the position setpoint using exponential smoothing
    - drives the motor using a PID controller
 
 Simply put, the x-axis of the joystick controls the velocity of motor 1 and the y-axis of the joystick controls the velocity of motor 2. This is joint space!
 
-**partner should hold on to power supply plug to kill if things go wrong**
-- check encoder pins
+**IMPORTANT: make sure that someone is holding onto the power supply plug at all times to kill the motors if things go wrong!**
 
 ### 4.3 Draw A Line
 Attach a marker to the end of your 2-DoF robot and try drawing a straight line on your whiteboard. Make sure to move all 3 files `drawing.cpp`, `joystick.cpp`, and `kinematics.cpp` from `lab_code/` to `robot/`.
@@ -179,9 +178,11 @@ Put simply, forward inverse kinematics answers the question, "Given the desired 
 
 Then, translate your derived equations into code by completing the `TODO 2`s in `kinematics.cpp`.
 
+To validate your derived equations, move `kinematics.cpp` and either `forward_kinematics_test.cpp` or `inverse_kinematics_test.cpp` to the `robot` directory and upload your code. When running `forward_kinematics_test.cpp`, you should see `x` and `y` reflect the position of the marker holder in real life. When running `inverse_kinematics_test.cpp`, you should see `theta1_error` and `theta2_error` be some multiple of `2*pi` (0, 6.28, 12.57, etc.).
+
 ### 5.3 Commanding the Robot
 
-Change `new_setpoint1` and `new_setpoint2` in `drawing.cpp` from joint space to Cartesian space using `State inverseKinematics(Point endEffector)`.
+Open `lab_code/drawing.cpp` and complete all the `TODO 2`s. This involves changing `new_setpoint1` and `new_setpoint2` in `drawing.cpp` from joint space to Cartesian space using `State inverseKinematics(Point endEffector)`.
 
 ### 5.4 Draw Something Pt.2
 
