@@ -5,7 +5,7 @@ Spring 2024[^1]
 
 - [1 Hardware Assembly](#1-hardware-assembly)
 - [2 Wiring and Validation](#2-wiring-and-validation)
-  - [2.1 Microcontroller and Code](#21-microcontroller-and-code)
+  - [2.1 Microcontroller](#21-microcontroller)
   - [2.2 Motors](#22-motors)
   - [2.3 Encoders](#23-encoders)
 - [3 Feedback Form](#3-feedback-form)
@@ -67,7 +67,7 @@ Steps:
 
 Similar to Lab 1, we also need to wire and validate the microcontroller, motors, and encoders.
 
-### 2.1 Microcontroller and Code
+### 2.1 Microcontroller
 
 1. Plug the microcontroller in the breadboard so that the USB-C port is near the edge of the breadboard.
 2. Use solid wires to connect the `3.3V` to both `+` rails and `GND` to both `-` rails.
@@ -80,6 +80,14 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
     </details>
 3. Open the VSCode application. Click "File" on the upper-left corner then click "New Window". 
 4. Clone this repository.
+5. Run `blink_test.cpp`. The onboard LED should change colors.
+    <details>
+    <summary><i> How do I put the microcontroller in download mode again?</i>
+    </summary>
+
+    Press and hold `BOOT`. Click `RST` while still holding down `BOOT`. Let go of `BOOT`.
+    </details>
+
 
 ### 2.2 Motors 
 
@@ -88,12 +96,6 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
 3. Push and hold the `M1A`, `M1B`, `M2A`, `M2B` buttons on the motor driver one at a time to check that the motors can spin in both directions. `M1` should correspond to the motor attached to the base.
 4.  Make sure the arm points straight up in full extension. This is the default position the arm should be in before running any code. 
 5.  Run `motor_drive_test.cpp`. You should see both motors turn in both directions at two different speeds. If nothing is happening, try pressing the emergency stop button.
-    <details>
-    <summary><i> How do I put the microcontroller in download mode again?</i>
-    </summary>
-
-    Press and hold `BOOT`. Click `RST` while still holding down `BOOT`. Let go of `BOOT`.
-    </details>
 
 ### 2.3 Encoders 
 
