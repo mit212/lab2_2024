@@ -3,8 +3,8 @@
 // TODO: Add an #include to refer to joystick.h.
 
 // TODO: Modify the two lines below to use the JoystickReading struct.
-int X = 0;
-int Y = 0;
+double X = 0;
+double Y = 0;
 
 void setup() {
     Serial.begin();
