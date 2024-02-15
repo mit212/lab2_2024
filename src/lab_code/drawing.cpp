@@ -11,6 +11,7 @@
 bool JOINT_SPACE = true;
 
 //PID Parameters
+double tau = 0.1; //seconds
 PID motorPID1(8.0, 0.0, 0.75, tau, 0.1, false);
 PID motorPID2(3.0, 0.0, 0.5, tau, 0.1, false);
 
