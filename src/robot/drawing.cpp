@@ -42,7 +42,7 @@ double alpha = 0.005;
 // Returns true if it is and false otherwise
 bool safetyLimit(JointSpace state) {
     return abs(state.theta1) <= M_PI/2.0 &&
-           abs(state.theta2) <= M_PI*0.9 &&
+           abs(state.theta2) <= M_PI*0.9;
         //    abs(state.theta1 + state.theta2) <= M_PI/2;
 };
 
