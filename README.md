@@ -81,14 +81,14 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
     </p>
 5. Push and hold the `M1A`, `M1B`, `M2A`, `M2B` buttons on the motor driver one at a time to check that the motors can spin in both directions. `M1` should correspond to the motor attached to the base.
 6. Make sure the arm is straight and run `motor_drive_test.cpp`. You should see both motors turn in both directions at two different speeds.
+7. Wire the encoders according to `include/pinout.h`.
+8. Run `encoder_basic_test.cpp` and open the Serial Monitor. The count should increase when turning counter-clockwise and decrease when turning clockwise. If not, take note of which encoder should have its A and B pins swapped.
+9.  Run `encoder_test.cpp`. Confirm that the position and velocity values are reasonable.
 
 | :white_check_mark: CHECKOFF 1 :white_check_mark:   |
 |:---------------------------------------------------|
-| Demonstrate `motor_drive_test.cpp` to a TA or LA! |
+| Demonstrate `encoder_test.cpp` to a TA or LA! |
 
-1. Wire the encoders according to `include/pinout.h`.
-2. Run `encoder_basic_test.cpp` and open the Serial Monitor. The count should increase when turning counter-clockwise and decrease when turning clockwise. If not, take note of which encoder should have its A and B pins swapped.
-3.  Run `encoder_test.cpp`. Confirm that the position and velocity values are reasonable.
 
 ## 3 Adding the Joystick
 
