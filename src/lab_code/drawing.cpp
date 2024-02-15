@@ -62,11 +62,15 @@ void loop() {
         // joystick_reading = 
 
         if (JOINT_SPACE) {
-            // TODO 1: Scale joystick_reading from range [0, 4096) to range [-M_PI/2.0, M_PI/2.0)
+            // TODO 1: Scale joystick_reading from range [-1, 1) to range [-M_PI/2.0, M_PI/2.0)
             new_setpoint.theta1 = 0;
             new_setpoint.theta2 = 0;
         } else {
             // TODO 2: Set new_setpoint using inverseKinematics() on joystick_reading
+            TaskSpace endEffector;
+            // endEffector.x = 
+            // endEffector.y = 
+            // new_setpoint = 
         }
 
         // If new setpoint is outside safety limits, use old setpoint so robot does nothing

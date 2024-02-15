@@ -15,9 +15,9 @@ void setup() {
 }
 
 void loop() {
-    // TODO: Modify the three lines below to use a function you implemented in joystick.cpp
-    X = analogRead(XPIN);
-    Y = analogRead(YPIN);
+    // TODO: Update the three lines below to use a function you implemented in joystick.cpp
+    X = analogRead(XPIN)/2048.0 - 1.0;
+    Y = analogRead(YPIN)/2048.0 - 1.0;
     Serial.printf("X: %d, Y: %d\n", X, Y);
     
     delay(50);
