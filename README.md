@@ -82,7 +82,7 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
 5. Push and hold the `M1A`, `M1B`, `M2A`, `M2B` buttons on the motor driver one at a time to check that the motors can spin in both directions. `M1` should correspond to the motor attached to the base.
 6. Make sure the arm is straight and run `motor_drive_test.cpp`. You should see both motors turn in both directions at two different speeds.
 7. Wire the encoders according to `include/pinout.h`.
-8. Run `encoder_basic_test.cpp` and open the Serial Monitor. The count should increase when turning counter-clockwise and decrease when turning clockwise. If not, take note of which encoder should have its A and B pins swapped.
+8. Run `encoder_basic_test.cpp` and open the Serial Monitor. IMPORTANT: the count should increase when turning counter-clockwise and decrease when turning clockwise. If not, swap the A and B pins (blue and white wires) on yourbreadboard.
 9.  Run `encoder_test.cpp`. Confirm that the position and velocity values are reasonable.
 
 | :white_check_mark: CHECKOFF 1 :white_check_mark:   |
@@ -98,7 +98,7 @@ Now that we have a validated 2-DoF robot, let's add a joystick to control it.
     <p align=center>
       <img src=./.images/schematic3.png width=900>
     </p>
-2. To validate that you can read the joystick input, run `joystick_test.cpp` and open the Serial Monitor. You should see joystick readings in the range `[0, 4096)`.
+2. To validate that you can read the joystick input, run `joystick_test.cpp` and open the Serial Monitor. You should see joystick readings in the range `[-1, 1)`.
 
 ## 4 Moving in Joint Space
 
@@ -132,7 +132,7 @@ With the joystick in place, we can then use code to connect the joystick reading
 
 Open `lab_code/drawing.cpp` and complete all the `TODO 1`s. At a high level, the code should do the following:
    - reads the joystick
-   - scales the joystick reading from `[0, 4096)` to `[-1, 1)`
+   - scales the joystick reading from `[-1, 1)` to `[-pi/2, pi/2)`
    - feeds the joystick reading to a position setpoint
    - smoothes the position setpoint using exponential smoothing
    - drives the motor using a PID controller
