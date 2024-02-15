@@ -21,6 +21,6 @@ void setup(){
 void loop(){
 	// Loop and read the count
 	Serial.println("Encoder 1 count = " + String((int32_t)encoder1.getCount()) + 
-				   "Encoder 2 count = " + String((int32_t)encoder2.getCount()));
+				   ",   Encoder 2 count = " + String((int32_t)encoder2.getCount()));
 	delay(PRINT_DELAY);
 }
