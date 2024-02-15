@@ -76,7 +76,7 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
     </details>
 3. Open the VSCode application. Click "File" on the upper-left corner then click "New Window". 
 4. Clone this repository.
-5. Wire the motors according to `include/pinout.h`.
+5. Wire the motors according to `include/pinout.h`. **Connect the `GND` pin of the motor driver to the `GND` rail.**
 6. Reduce the power supply output to about `6V`. **Remember, the motors are powerful. Always keep the workspace clear of obstacles (laptops) and hold on to the power supply connection as an emergency stop.**
 7. Push and hold the `M1A`, `M1B`, `M2A`, `M2B` buttons on the motor driver one at a time to check that the motors can spin in both directions. `M1` should correspond to the motor attached to the base.
 8. Make sure the arm is straight and run `motor_drive_test.cpp`. You should see both motors turn in both directions at two different speeds.
