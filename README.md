@@ -61,7 +61,7 @@ Steps:
     <p align=center>
       <img src=./.images/4_holder.png width=600>
     </p>
-5. Clamp the base down to the table.
+5. Use two clamps to hold the base down to the table.
 
 ## 2 Wiring and Validation
 
