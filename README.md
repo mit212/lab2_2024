@@ -90,7 +90,7 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
    <p align=center>
       <img src=./.images/schematic2.png width=800>
     </p>
-9. Run `encoder_basic_test.cpp` and open the Serial Monitor. The count should increase when turning counter-clockwise and decrease when turning clockwise.
+9. Run `encoder_basic_test.cpp` and open the Serial Monitor. The count should increase when turning counter-clockwise and decrease when turning clockwise. If not, take note of which encoder should have its A and B pins swapped.
 10. Run `encoder_test.cpp`. Confirm that the position and velocity values are reasonable.
 
 
@@ -142,6 +142,9 @@ Open `lab_code/drawing.cpp` and complete all the `TODO 1`s. At a high level, the
    - drives the motor using a PID controller
 
 Simply put, the x-axis of the joystick controls the velocity of motor 1 and the y-axis of the joystick controls the velocity of motor 2. This is joint space!
+
+**partner should hold on to power supply plug to kill if things go wrong**
+- check encoder pins
 
 ### 4.3 Draw Something
 Attach a marker to the end of your 2-DoF robot and try drawing something on your whiteboard. Make sure to move all 3 files `drawing.cpp`, `joystick.cpp`, and `kinematics.cpp` from `lab_code/` to `robot/`.

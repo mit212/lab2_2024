@@ -15,12 +15,13 @@ double kp = 5;
 double ki = 0;
 double kd = 0;
 double tau = 0.1; //seconds
-PID motorPID(kp, ki, kd, 0, tau, false);
+PID motorPID1(kp, ki, kd, 0, tau, false);
+PID motorPID2(kp, ki, kd, 0, tau, false);
 
 JoystickReading joystick_reading;
 
-JointSpace setpoint;
-JointSpace new_setpoint;
+JointSpace setpoint = {0, 0};
+JointSpace new_setpoint = {0, 0};
 
 double position1 = 0; //radians
 double position2 = 0; //radians
@@ -29,17 +30,14 @@ double controlEffort2 = 0; //duty cycle
 
 MotorDriver motor1(DIR1, PWM1, 0);
 MotorDriver motor2(DIR2, PWM2, 0);
-EncoderVelocity encoder1(ENCODER1_B_PIN, ENCODER1_A_PIN, CPR_312_RPM, 0.2);
-EncoderVelocity encoder2(ENCODER2_B_PIN, ENCODER2_A_PIN, CPR_312_RPM, 0.2);
+EncoderVelocity encoder1(ENCODER1_A_PIN, ENCODER1_B_PIN, CPR_312_RPM, 0.2);
+EncoderVelocity encoder2(ENCODER2_A_PIN, ENCODER2_B_PIN, CPR_312_RPM, 0.2);
 
 //variables for calculating the average time between PID loops
 unsigned long currentPidLoopStartTime = 0;
 unsigned long previousPidLoopStartTime = 0;
 unsigned long timeBetweenPidLoopsAccumulator = 0;
 int pidLoopIntervalCount = 0;
-
-double scaledX = 0;
-double scaledY = 0;
 
 double alpha = 0.001;
 
@@ -62,27 +60,14 @@ void setup() {
 }
 
 void loop() {
-    // Update PID at 10kHz
-    EVERY_N_MICROS(100) {        
-        currentPidLoopStartTime = micros(); // Record start time of current PID loop
-
-        // Calculate the time between the start of the current and the previous PID loop
-        if (pidLoopIntervalCount > 0) { // Skip the first loop to have a previous time to compare
-            timeBetweenPidLoopsAccumulator += currentPidLoopStartTime - previousPidLoopStartTime;
-        }
-        previousPidLoopStartTime = currentPidLoopStartTime; // Update previous start time for the next loop
-        pidLoopIntervalCount++;
-
+    EVERY_N_MICROS(1000) {
         // TODO 1: Use the function you implemented in joystick.cpp to read inputs from the joystick 
         // joystick_reading = 
 
         if (JOINT_SPACE) {
-            // TODO 1: Scale joystick_reading from range [0, 4096) to range [-1, 1)
-            scaledX = 0;
-            scaledY = 0;
-
-            new_setpoint = {scaledX, scaledY};
-            new_setpoint = new_setpoint * PI;
+            // TODO 1: Scale joystick_reading from range [0, 4096) to range [-M_PI/2.0, M_PI/2.0)
+            new_setpoint.theta1 = 0;
+            new_setpoint.theta2 = 0;
         } else {
             // TODO 2: Set new_setpoint using inverseKinematics() on joystick_reading
         }
@@ -94,11 +79,23 @@ void loop() {
 
         // Exponential smoothing filter
         setpoint = new_setpoint*alpha + setpoint*(1 - alpha);
+    }
+
+    // Update PID at 10kHz
+    EVERY_N_MICROS(100) {        
+        currentPidLoopStartTime = micros(); // Record start time of current PID loop
+
+        // Calculate the time between the start of the current and the previous PID loop
+        if (pidLoopIntervalCount > 0) { // Skip the first loop to have a previous time to compare
+            timeBetweenPidLoopsAccumulator += currentPidLoopStartTime - previousPidLoopStartTime;
+        }
+        previousPidLoopStartTime = currentPidLoopStartTime; // Update previous start time for the next loop
+        pidLoopIntervalCount++;
 
         position1 = encoder1.getPosition();
         position2 = encoder2.getPosition();
-        controlEffort1 = motorPID.calculateParallel(setpoint.theta1, position1);
-        controlEffort2 = motorPID.calculateParallel(setpoint.theta2, position2);
+        controlEffort1 = motorPID1.calculateParallel(setpoint.theta1, position1);
+        controlEffort2 = motorPID2.calculateParallel(setpoint.theta2, position2);
 
         motor1.drive(controlEffort1);
         motor2.drive(controlEffort2);
