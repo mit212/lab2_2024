@@ -15,8 +15,7 @@ Spring 2024[^1]
   - [5.2 Inverse Kinematics](#52-inverse-kinematics)
   - [5.3 Commanding the Robot](#53-commanding-the-robot)
   - [5.4 Draw Something Pt.2](#54-draw-something-pt2)
-- [6 Git Push](#6-git-push)
-- [7 Feedback Form](#7-feedback-form)
+- [6 Feedback Form](#6-feedback-form)
 - [X Optional](#x-optional)
   - [X.1 PID Tuning](#x1-pid-tuning)
   - [X.2 Setpoint Path](#x2-setpoint-path)
@@ -24,7 +23,7 @@ Spring 2024[^1]
     
 ## 1 Hardware Assembly
 
-Below is an image of the 2-DoF robot arm you will assemble. Completing this section should take less than 30 minutes, so please ask for help if you feel like you are taking longer! We want you to have enough time to complete the remaining sections.
+Below is an image of the 2-DoF robot arm you will assemble. Completing this section should take less than 15 minutes, so please ask for help if you feel like you are taking longer! We want you to have enough time to complete the remaining sections.
 
 <p align=center>
   <img src=./.images/0_full.png width=600>
@@ -74,24 +73,25 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
 
     Rails on a breadboard refer to the two long strips labeled `+` and `-` on either side. They are typically located between red and blue lines parallel to the rails.
     </details>
-3. Open `include/pinout.h` and note down the motor and encoder pin numbers.
-4. Wire the motors according to the schematic below.
+3. Open the VSCode application and clone this repository.
+4. Open `include/pinout.h` and note down the motor and encoder pin numbers.
+5. Wire the motors according to the schematic below.
     <p align=center>
       <img src=./.images/schematic1.png width=600>
     </p>
-5. Push and hold the `M1A`, `M1B`, `M2A`, `M2B` buttons on the motor driver one at a time to check that the motors can spin in both directions.
-6. Run `motor_drive_test.cpp`. You should see both motors turn in both directions at two different speeds.
+6. Push and hold the `M1A`, `M1B`, `M2A`, `M2B` buttons on the motor driver one at a time to check that the motors can spin in both directions.
+7. Run `motor_drive_test.cpp`. You should see both motors turn in both directions at two different speeds.
 
 | :white_check_mark: CHECKOFF 1 :white_check_mark:   |
 |:---------------------------------------------------|
 | Demonstrate `motor_drive_test.cpp` to a TA or LA! |
 
-6. Wire the encoders according to the schematic below.
+8. Wire the encoders according to the schematic below.
    <p align=center>
       <img src=./.images/schematic2.png width=800>
     </p>
-7. Run `encoder_basic_test.cpp` and open the Serial Monitor. The count should increase when turning counter-clockwise and decrease when turning clockwise.
-8. Run `encoder_test.cpp`. Confirm that the position and velocity values are reasonable.
+9. Run `encoder_basic_test.cpp` and open the Serial Monitor. The count should increase when turning counter-clockwise and decrease when turning clockwise.
+10. Run `encoder_test.cpp`. Confirm that the position and velocity values are reasonable.
 
 
 ## 3 Adding the Joystick
@@ -195,11 +195,7 @@ Finally, use the joystick to draw something fun!
 |:---------------------------------------------------|
 | Show your (hopefully improved) work of art to a TA or LA! |
 
-## 6 Git Push
-
-Your new code can currently only be accessed locally. etc etc WIP
-
-## 7 Feedback Form
+## 6 Feedback Form
 
 Before you leave, please fill out https://tinyurl.com/212-feedback and present the completion screen to a TA or LA. 
 
