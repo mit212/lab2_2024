@@ -122,7 +122,7 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
 
 Before you leave, please fill out https://tinyurl.com/212-feedback and present the completion screen to a TA or LA. 
 
-**LAB IS SET TO STOP HERE. EVERYTHING AFTER THIS POINT IS OPTIONAL AND WILL BE DONE 1 or 2 LABS FROM NOW.**
+**LAB IS SET TO STOP HERE. EVERYTHING AFTER THIS POINT IS OPTIONAL AND WILL BE DONE 1 or 2 LABS FROM NOW. IF TIME PERMITS, PLEASE DISASSEMBLE EVERYTHING FOR THE NEXT LAB SECTION.**
 
 ## 4 Adding the Joystick
 
