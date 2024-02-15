@@ -10,13 +10,13 @@ TaskSpace point;
 
 // Encoder velocity readers
 EncoderVelocity encoder1(ENCODER1_A_PIN, ENCODER1_B_PIN, CPR_312_RPM);
-EncoderVelocity encoder2(ENCODER1_A_PIN, ENCODER1_B_PIN, CPR_312_RPM);
+EncoderVelocity encoder2(ENCODER2_A_PIN, ENCODER2_B_PIN, CPR_312_RPM);
 
 void setup() {
     Serial.begin();
 }
 
-//Prints the equivalent task space coordinates to the serial monitor
+// Prints the equivalent task space coordinates to the serial monitor
 void printExpectedCartesian(){
     state.theta1 = encoder1.getPosition();
     state.theta2 = encoder2.getPosition();

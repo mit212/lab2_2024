@@ -1,6 +1,9 @@
+#ifndef KINEMATICS
+#define KINEMATICS
+
 #include <math.h>
 
-// TODO: Change the values below to reflect the actual lengths of the links.
+// TODO 1: Change the values below to reflect the actual lengths of the links.
 # define LINK1 0.169 // m
 # define LINK2 0.169 // m
 
@@ -32,3 +35,5 @@ struct TaskSpace {
 
 TaskSpace forwardKinematics(JointSpace state);
 JointSpace inverseKinematics(TaskSpace point);
+
+#endif

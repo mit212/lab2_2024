@@ -79,7 +79,7 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
     <p align=center>
       <img src=./.images/schematic1.png width=600>
     </p>
-5. Push and hold the `M1A`, `M1B`, `M2A`, `M2B` buttons on the motor driver one at a time to check that the motors can spin in both directions.
+5. Push and hold the `M1A`, `M1B`, `M2A`, `M2B` buttons on the motor driver one at a time to check that the motors can spin in both directions. `M1` should correspond to the motor attached to the base.
 6. Make sure the arm is straight and run `motor_drive_test.cpp`. You should see both motors turn in both directions at two different speeds.
 
 | :white_check_mark: CHECKOFF 1 :white_check_mark:   |
@@ -127,7 +127,10 @@ With the joystick in place, we can then use code to connect the joystick reading
     ```
     </details>
 
-2. Open `lab_code/joystick.cpp` and complete the `TODO`s. Refer to `test_code/joystick_test.cpp` to see how to use `INPUT` and `analogRead`.
+2. Open `lab_code/joystick.cpp` and complete the `TODO`s. 
+3. Open `test_code/joystick_test.cpp` and complete the `TODO`s. 
+4. Move `joystick_test.cpp` and `joystick.cpp` to the `robot/` directory. 
+5. Run the new `joystick_test.cpp` and open the Serial Monitor. Confirm that your joystick readings are the same as before. 
     
 ### 4.2 Commanding the Robot
 
@@ -178,13 +181,13 @@ Put simply, forward inverse kinematics answers the question, "Given the desired 
 
 </details>
 
-Then, translate your derived equations into code by completing the `TODO 2`s in `include/kinematics.h` and `kinematics.cpp`.
+Then, translate your derived equations into code by completing the `TODO 2`s in `kinematics.cpp`.
 
 **CONSIDER WRITING TESTS?**
 
 ### 5.3 Commanding the Robot
 
-Change `new_setpoint1` and `new_setpoint2` in `motor_position_control.cpp` from joint space to Cartesian space using `State inverseKinematics(Point endEffector)`.
+Change `new_setpoint1` and `new_setpoint2` in `drawing.cpp` from joint space to Cartesian space using `State inverseKinematics(Point endEffector)`.
 
 ### 5.4 Draw Something Pt.2
 
