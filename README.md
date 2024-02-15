@@ -80,7 +80,7 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
 6. Reduce the power supply output to about `6V`. **Remember, the motors are powerful. Always keep the workspace clear of obstacles (laptops) and hold on to the power supply connection as an emergency stop.**
 7. Push and hold the `M1A`, `M1B`, `M2A`, `M2B` buttons on the motor driver one at a time to check that the motors can spin in both directions. `M1` should correspond to the motor attached to the base.
 8. Make sure the arm is straight and run `motor_drive_test.cpp`. You should see both motors turn in both directions at two different speeds.
-9. Wire the encoders according to `include/pinout.h`. Use the extension cable for `M2`.
+9. Wire the encoders according to `include/pinout.h`. Use an extension cable for `M2`. Use zip ties to attach the wires coming out of `M2` to the first link so that `M1` can rotate freely without snagging wires.
 10. Run `encoder_basic_test.cpp` and open the Serial Monitor. The count should increase when turning counter-clockwise looking and decrease when turning clockwise. 
 11. Run `encoder_test.cpp`. Confirm that the position and velocity values are reasonable.
 
