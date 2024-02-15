@@ -10,7 +10,7 @@ JointSpace test_state;
 
 // Encoder velocity readers
 EncoderVelocity encoder1(ENCODER1_A_PIN, ENCODER1_B_PIN, CPR_60_RPM);
-EncoderVelocity encoder2(ENCODER2_B_PIN, ENCODER2_A_PIN, CPR_60_RPM);
+EncoderVelocity encoder2(ENCODER2_A_PIN, ENCODER2_B_PIN, CPR_60_RPM);
 
 void setup() {
     Serial.begin();

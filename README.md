@@ -178,7 +178,7 @@ Put simply, forward inverse kinematics answers the question, "Given the desired 
 
 Then, translate your derived equations into code by completing the `TODO 2`s in `kinematics.cpp`.
 
-To validate your derived equations, move `kinematics.cpp` and either `forward_kinematics_test.cpp` or `inverse_kinematics_test.cpp` to the `robot` directory and upload your code. When running `forward_kinematics_test.cpp`, you should see `x` and `y` reflect the position of the marker holder in real life. When running `inverse_kinematics_test.cpp`, you should see `theta1_error` and `theta2_error` be some multiple of `2*pi` (0, 6.28, 12.57, etc.).
+To validate your derived equations, move `kinematics.cpp` and either `forward_kinematics_test.cpp` or `inverse_kinematics_test.cpp` to the `robot` directory and upload your code. When running `forward_kinematics_test.cpp`, you should see `x` and `y` reflect the position of the marker holder in real life. When running `inverse_kinematics_test.cpp`, you should see `theta1_error` and `theta2_error` be 0.
 
 ### 5.3 Commanding the Robot
 
