@@ -185,7 +185,7 @@ To validate your derived equations, move `kinematics.cpp` and either `forward_ki
 
 ### 5.3 Commanding the Robot
 
-Change `new_setpoint1` and `new_setpoint2` in `drawing.cpp` from joint space to Cartesian space using `State inverseKinematics(Point endEffector)`.
+Open `lab_code/drawing.cpp` and complete all the `TODO 2`s. This involves changing `new_setpoint1` and `new_setpoint2` in `drawing.cpp` from joint space to Cartesian space using `State inverseKinematics(Point endEffector)`.
 
 ### 5.4 Draw Something Pt.2
 
