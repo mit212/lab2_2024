@@ -4,20 +4,21 @@
 Spring 2024[^1]
 
 - [1 Hardware Assembly](#1-hardware-assembly)
-- [2 Microcontroller Wiring and Code](#2-microcontroller-wiring-and-code)
-- [3 Motor Wiring and Validation](#3-motor-wiring-and-validation)
-- [4 Encoder Wiring and Validation](#4-encoder-wiring-and-validation)
-- [5 Feedback Form](#5-feedback-form)
-- [6 Adding the Joystick](#6-adding-the-joystick)
-- [7 Moving in Joint Space](#7-moving-in-joint-space)
-  - [7.1 Refactoring Code](#71-refactoring-code)
-  - [7.2 Commanding the Robot](#72-commanding-the-robot)
-  - [7.3 Draw A Line](#73-draw-a-line)
-- [8 Moving in Cartesian Space](#8-moving-in-cartesian-space)
-  - [8.1 Forward Kinematics](#81-forward-kinematics)
-  - [8.2 Inverse Kinematics](#82-inverse-kinematics)
-  - [8.3 Commanding the Robot](#83-commanding-the-robot)
-  - [8.4 Draw Something Pt.2](#84-draw-something-pt2)
+- [2 Wiring and Validation](#2-wiring-and-validation)
+  - [2.1 Microcontroller and Code](#21-microcontroller-and-code)
+  - [2.2 Motors](#22-motors)
+  - [2.3 Encoders](#23-encoders)
+- [3 Feedback Form](#3-feedback-form)
+- [4 Adding the Joystick](#4-adding-the-joystick)
+- [5 Moving in Joint Space](#5-moving-in-joint-space)
+  - [5.1 Refactoring Code](#51-refactoring-code)
+  - [5.2 Commanding the Robot](#52-commanding-the-robot)
+  - [5.3 Draw A Line](#53-draw-a-line)
+- [6 Moving in Cartesian Space](#6-moving-in-cartesian-space)
+  - [6.1 Forward Kinematics](#61-forward-kinematics)
+  - [6.2 Inverse Kinematics](#62-inverse-kinematics)
+  - [6.3 Commanding the Robot](#63-commanding-the-robot)
+  - [6.4 Draw Something Pt.2](#64-draw-something-pt2)
 - [X Optional](#x-optional)
   - [X.1 PID Tuning](#x1-pid-tuning)
   - [X.2 Setpoint Path](#x2-setpoint-path)
@@ -62,7 +63,11 @@ Steps:
     </p>
 5. Clamp the base down to the table.
 
-## 2 Microcontroller Wiring and Code
+## 2 Wiring and Validation
+
+Similar to Lab 1, we also need to wire and validate the microcontroller, motors, and encoders.
+
+### 2.1 Microcontroller and Code
 
 1. Plug the microcontroller in the breadboard so that the USB-C port is near the edge of the breadboard.
 2. Use solid wires to connect the `3.3V` to both `+` rails and `GND` to both `-` rails.
@@ -76,7 +81,7 @@ Steps:
 3. Open the VSCode application. Click "File" on the upper-left corner then click "New Window". 
 4. Clone this repository.
 
-## 3 Motor Wiring and Validation 
+### 2.2 Motors 
 
 1. Wire the motors according to `include/pinout.h`. Connect the `GND` pin of the motor driver to the `-` rail. 
 2. Use the button as an emergency stop to go between the motor driver and the power supply. Reduce the power supply output to about `6V`. **Remember, the motors are powerful. Always keep the workspace clear of obstacles (laptops) and hold on to the emergency stop button.**
@@ -90,7 +95,7 @@ Steps:
     Press and hold `BOOT`. Click `RST` while still holding down `BOOT`. Let go of `BOOT`.
     </details>
 
-## 4 Encoder Wiring and Validation 
+### 2.3 Encoders 
 
 1. Wire the encoders according to `include/pinout.h`. Use an extension cable for `M2`. Use zip ties to attach the wires coming out of `M2` to the first link so that `M1` can rotate freely without snagging wires.
 2. Run `encoder_basic_test.cpp` and open the Serial Monitor. The count should increase when turning counter-clockwise looking and decrease when turning clockwise. 
@@ -100,24 +105,24 @@ Steps:
 |:---------------------------------------------------|
 | Demonstrate `encoder_test.cpp` to a TA or LA! |
 
-## 5 Feedback Form
+## 3 Feedback Form
 
 Before you leave, please fill out https://tinyurl.com/212-feedback and present the completion screen to a TA or LA. 
 
 **LAB IS SET TO STOP HERE. EVERYTHING AFTER THIS POINT IS OPTIONAL AND WILL BE DONE 1 or 2 LABS FROM NOW.**
 
-## 6 Adding the Joystick
+## 4 Adding the Joystick
 
 Now that we have a validated 2-DoF robot, let's add a joystick to control it.
 
 1. Wire the joystick according to the schematic on the board.
 2. To validate that you can read the joystick input, run `joystick_test.cpp` and open the Serial Monitor. You should see joystick readings in the range `[-1, 1)`.
 
-## 7 Moving in Joint Space
+## 5 Moving in Joint Space
 
 With the joystick in place, we can then use code to connect the joystick reading to the robot motion.
 
-### 7.1 Refactoring Code
+### 5.1 Refactoring Code
 
 1. Open `include/joystick.h` and define a `struct` to store the `x` and `y` values of a joystick reading as integers.
     <details>
@@ -141,7 +146,7 @@ With the joystick in place, we can then use code to connect the joystick reading
 4. Move `joystick_test.cpp` and `joystick.cpp` to the `robot/` directory. 
 5. Run the new `joystick_test.cpp` and open the Serial Monitor. Confirm that your joystick readings are the same as before. 
     
-### 7.2 Commanding the Robot
+### 5.2 Commanding the Robot
 
 Open `lab_code/drawing.cpp` and complete all the `TODO 1`s. At a high level, the code should do the following:
    - reads the joystick
@@ -152,18 +157,18 @@ Open `lab_code/drawing.cpp` and complete all the `TODO 1`s. At a high level, the
 
 Simply put, the x-axis of the joystick controls the velocity of motor 1 and the y-axis of the joystick controls the velocity of motor 2. This is joint space!
 
-### 7.3 Draw A Line
+### 5.3 Draw A Line
 Attach a marker to the end of your 2-DoF robot and try drawing a straight line on your whiteboard. Make sure to move all 3 files `drawing.cpp`, `joystick.cpp`, and `kinematics.cpp` from `lab_code/` to `robot/`.
 
 | :white_check_mark: CHECKOFF 2 :white_check_mark:   |
 |:---------------------------------------------------|
 | Show your work of art to a TA or LA! |
 
-## 8 Moving in Cartesian Space
+## 6 Moving in Cartesian Space
 
 You may have noticed that it is quite difficult to draw something by controlling the motors individually. Since our desired output is in Cartesian space, we can use what we learned in lecture to command the robot in Cartesian space instead of joint space!
 
-### 8.1 Forward Kinematics
+### 6.1 Forward Kinematics
 
 First, derive the forward kinematic equations for a 2-DoF arm. In other words, derive equations for `x` and `y` in terms of <code>Θ<sub>1</sub></code> and <code>Θ<sub>2</sub></code>.
 
@@ -184,7 +189,7 @@ Forward kinematics answers the question, "Given the angles of the robot's joints
 
 Run `forward_kinematics_test.cpp`.
 
-### 8.2 Inverse Kinematics
+### 6.2 Inverse Kinematics
 
 Using the forward kinematic equations you found, derive the inverse kinematic equations for a 2-DoF arm. In other words, derive equations for <code>Θ<sub>1</sub></code> and <code>Θ<sub>2</sub></code> in terms of `x` and `y`.
 
@@ -200,11 +205,11 @@ Then, translate your derived equations into code by completing the `TODO 2`s in 
 
 To validate your derived equations, move `kinematics.cpp` and either `forward_kinematics_test.cpp` or `inverse_kinematics_test.cpp` to the `robot` directory and upload your code. When running `forward_kinematics_test.cpp`, you should see `x` and `y` reflect the position of the marker holder in real life. When running `inverse_kinematics_test.cpp`, you should see `theta1_error` and `theta2_error` be 0.
 
-### 8.3 Commanding the Robot
+### 6.3 Commanding the Robot
 
 Open `lab_code/drawing.cpp` and complete all the `TODO 2`s. This involves changing `new_setpoint1` and `new_setpoint2` in `drawing.cpp` from joint space to Cartesian space using `State inverseKinematics(Point endEffector)`.
 
-### 8.4 Draw Something Pt.2
+### 6.4 Draw Something Pt.2
 
 Finally, use the joystick to draw a straight line.
 
