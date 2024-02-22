@@ -9,19 +9,12 @@ Spring 2024[^1]
   - [2.2 Motors](#22-motors)
   - [2.3 Encoders](#23-encoders)
 - [3 Feedback Form](#3-feedback-form)
-- [4 Adding the Joystick](#4-adding-the-joystick)
-- [5 Moving in Joint Space](#5-moving-in-joint-space)
-  - [5.1 Refactoring Code](#51-refactoring-code)
-  - [5.2 Commanding the Robot](#52-commanding-the-robot)
-  - [5.3 Draw A Line](#53-draw-a-line)
-- [6 Moving in Cartesian Space](#6-moving-in-cartesian-space)
-  - [6.1 Forward Kinematics](#61-forward-kinematics)
-  - [6.2 Inverse Kinematics](#62-inverse-kinematics)
-  - [6.3 Commanding the Robot](#63-commanding-the-robot)
-  - [6.4 Draw Something](#64-draw-something)
 - [X Optional](#x-optional)
-  - [X.1 PID Tuning](#x1-pid-tuning)
-  - [X.2 Setpoint Path](#x2-setpoint-path)
+  - [X.1 Adding the Joystick](#x1-adding-the-joystick)
+  - [X.2 Moving in Joint Space](#x2-moving-in-joint-space)
+  - [X.2.1 Refactoring Code](#x21-refactoring-code)
+  - [X.2.2 Commanding the Robot](#x22-commanding-the-robot)
+  - [X.2.3 Draw A Line](#x23-draw-a-line)
     
 ## 1 Hardware Assembly
 
@@ -122,20 +115,24 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
 
 Before you leave, please fill out https://tinyurl.com/212-feedback and present the completion screen to a TA or LA. 
 
-**LAB IS SET TO STOP HERE. EVERYTHING AFTER THIS POINT IS OPTIONAL AND WILL BE DONE 1 or 2 LABS FROM NOW.**
+| :white_check_mark: CHECKOFF 2 :white_check_mark:   |
+|:---------------------------------------------------|
+| Present the completion screen to a TA or LA! |
 
-## 4 Adding the Joystick
+## X Optional
+
+### X.1 Adding the Joystick
 
 Now that we have a validated 2-DoF robot, let's add a joystick to control it.
 
 1. Wire the joystick according to the schematic on the board.
 2. To validate that you can read the joystick input, run `joystick_test.cpp` and open the Serial Monitor. You should see joystick readings in the range `[-1, 1)`.
 
-## 5 Moving in Joint Space
+### X.2 Moving in Joint Space
 
 With the joystick in place, we can then use code to connect the joystick reading to the robot motion.
 
-### 5.1 Refactoring Code
+### X.2.1 Refactoring Code
 
 1. Open `include/joystick.h` and define a `struct` to store the `x` and `y` values of a joystick reading as integers.
     <details>
@@ -159,9 +156,9 @@ With the joystick in place, we can then use code to connect the joystick reading
 4. Move `joystick_test.cpp` and `joystick.cpp` to the `robot/` directory. 
 5. Run the new `joystick_test.cpp` and open the Serial Monitor. Confirm that your joystick readings are the same as before. 
     
-### 5.2 Commanding the Robot
+### X.2.2 Commanding the Robot
 
-Open `lab_code/drawing.cpp` and complete all the `TODO 1`s. At a high level, the code should do the following:
+Open `lab_code/drawing.cpp` and complete all the `TODO`s. At a high level, the code should do the following:
    - reads the joystick
    - scales the joystick reading from `[-1, 1)` to `[-pi/2, pi/2)`
    - feeds the joystick reading to a position setpoint
@@ -170,76 +167,14 @@ Open `lab_code/drawing.cpp` and complete all the `TODO 1`s. At a high level, the
 
 Simply put, the x-axis of the joystick controls the velocity of motor 1 and the y-axis of the joystick controls the velocity of motor 2. This is joint space!
 
-### 5.3 Draw A Line
+### X.2.3 Draw A Line
 Attach a marker to the end of your 2-DoF robot and try drawing a straight line on your whiteboard. Make sure to move all 3 files `drawing.cpp`, `joystick.cpp`, and `kinematics.cpp` from `lab_code/` to `robot/`.
 
 | :white_check_mark: CHECKOFF 2 :white_check_mark:   |
 |:---------------------------------------------------|
 | Show your work of art to a TA or LA! |
 
-## 6 Moving in Cartesian Space
-
-You may have noticed that it is quite difficult to draw something by controlling the motors individually. Since our desired output is in Cartesian space, we can use what we learned in lecture to command the robot in Cartesian space instead of joint space!
-
-### 6.1 Forward Kinematics
-
-First, derive the forward kinematic equations for a 2-DoF arm. In other words, derive equations for `x` and `y` in terms of <code>Θ<sub>1</sub></code> and <code>Θ<sub>2</sub></code>.
-
-<p align="center">
-<img src="./.images/2dofarm.png" alt="drawing" width="300"/>
-</p>
-
-| :white_check_mark: CHECKOFF 3 :white_check_mark:   |
-|:---------------------------------------------------|
-| Show your work of art to a TA or LA! |
-
-<details>
-<summary><i> What is forward kinematics? </i></summary>
-
-Forward kinematics answers the question, "Given the angles of the robot's joints, what are the x, y coordinates of the robot's hand?" For more, refer to lecture 2!
-
-</details>
-
-Run `forward_kinematics_test.cpp`.
-
-### 6.2 Inverse Kinematics
-
-Using the forward kinematic equations you found, derive the inverse kinematic equations for a 2-DoF arm. In other words, derive equations for <code>Θ<sub>1</sub></code> and <code>Θ<sub>2</sub></code> in terms of `x` and `y`.
-
-<details>
-<summary><i> What is inverse kinematics? </i></summary>
-
-It's the opposite of forward kinematics!
-Put simply, forward inverse kinematics answers the question, "Given the desired x,y coordinates of the robot's hand, what should the angles of the robot's joints be?" For more, refer to lecture 2!
-
-</details>
-
-Then, translate your derived equations into code by completing the `TODO 2`s in `kinematics.cpp`.
-
-To validate your derived equations, move `kinematics.cpp` and either `forward_kinematics_test.cpp` or `inverse_kinematics_test.cpp` to the `robot` directory and upload your code. When running `forward_kinematics_test.cpp`, you should see `x` and `y` reflect the position of the marker holder in real life. When running `inverse_kinematics_test.cpp`, you should see `theta1_error` and `theta2_error` be 0.
-
-### 6.3 Commanding the Robot
-
-Open `lab_code/drawing.cpp` and complete all the `TODO 2`s. This involves changing `new_setpoint1` and `new_setpoint2` in `drawing.cpp` from joint space to Cartesian space using `State inverseKinematics(Point endEffector)`.
-
-### 6.4 Draw Something 
-
-Finally, use the joystick to draw your masterpiece.
-
-| :white_check_mark: CHECKOFF 4 :white_check_mark:   |
-|:---------------------------------------------------|
-| Show your (hopefully improved) work of art to a TA or LA! |
-
-## X Optional
-
-If you finished lab early, here's a few optional challenges you can try (in any order)!
-
-### X.1 PID Tuning
-
-Change the gains in `drawing.cpp` so that robot moves smoothly. 
-
-### X.2 Setpoint Path
-
-Make copy of `drawing.cpp` and modify it so that the end-effector of your robot follows a set path, e.g. a circle.
-
-[^1]: Version 1 - 2024: Jinger Chong, Josh Sohn
+[^1]: Version 1 - 2020: Rachel Hoffman  
+  Version 2 - 2024: Phillip Daniel  
+  Version 3 - 2024: Ravi Tejwani, Kentaro Barhydt  
+  Version 4 - 2024: Jinger Chong, Josh Sohn
