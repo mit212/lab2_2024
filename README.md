@@ -113,11 +113,11 @@ Similar to Lab 1, we also need to wire and validate the microcontroller, motors,
 
 ## 3 Feedback Form
 
-Before you leave, please fill out https://tinyurl.com/212-feedback and present the completion screen to a TA or LA. 
+Before you leave, please fill out https://tinyurl.com/212-feedback. 
 
 | :white_check_mark: CHECKOFF 2 :white_check_mark:   |
 |:---------------------------------------------------|
-| Present the completion screen to a TA or LA! |
+| Show the feedback form completion screen to a TA or LA. |
 
 ## X Optional
 
